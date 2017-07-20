@@ -1,0 +1,340 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B1BB8BDC-F5AB-41C1-A022-A3BCC91B90F3}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Bodget</RootNamespace>
+    <AssemblyName>Bodget</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Db4objects.Db4o">
+      <HintPath>..\..\..\Library\Libod\Libod\lib\Db4objects.Db4o.dll</HintPath>
+    </Reference>
+    <Reference Include="Db4objects.Db4o.Linq">
+      <HintPath>..\..\..\Library\Libod\Libod\lib\Db4objects.Db4o.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Microsoft.VisualBasic.PowerPacks.Vs, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="SourceGrid, Version=4.40.6386.36581, Culture=neutral, PublicKeyToken=df6f5e538749e85d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Library\LibodUserCtrl\LibodUserCtrl\lib\SourceGrid.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="UIAutomationTypes" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CRUD\Grid\crudGrid_BackColorAlternate.cs" />
+    <Compile Include="CRUD\Properties\crudWidth.cs" />
+    <Compile Include="CRUD\Properties\crudVisible.cs" />
+    <Compile Include="Data\BaseMng.cs" />
+    <Compile Include="Data\BaseHasMng.cs" />
+    <Compile Include="Data\ImExport.cs" />
+    <Compile Include="Data\DB4O.cs" />
+    <Compile Include="Data\dbObjectInfo.cs" />
+    <Compile Include="Logic\BaseEx.cs" />
+    <Compile Include="Logic\CompteEx.cs" />
+    <Compile Include="Logic\CompteHasBeneficiareEx.cs" />
+    <Compile Include="Logic\BeneficiareEx.cs" />
+    <Compile Include="Logic\ChequeEx.cs" />
+    <Compile Include="Logic\PropertyTypeNameAttributeEx.cs" />
+    <Compile Include="Logic\PropertyTypeNameValueEx.cs" />
+    <Compile Include="Logic\PropertyTypeNameEx.cs" />
+    <Compile Include="Logic\SearchCriteriaEx.cs" />
+    <Compile Include="Logic\RulesOperation2CategoryEx.cs" />
+    <Compile Include="Data\BaseMngV1.cs" />
+    <Compile Include="Logic\OperationEx.cs" />
+    <Compile Include="Model\Cheque.cs" />
+    <Compile Include="Model\PartialClassCRUD\PropertyHeaderCRUD.cs" />
+    <Compile Include="Model\PropertyHeader.cs" />
+    <Compile Include="Model\PartialClassCRUD\CategoryCRUD.cs" />
+    <Compile Include="Model\PartialClassCRUD\BanqueCRUD.cs" />
+    <Compile Include="Model\PartialClassCRUD\BeneficiareCRUD.cs" />
+    <Compile Include="Model\PartialClassCRUD\ChequeCRUD.cs" />
+    <Compile Include="CRUD\Constantes.cs" />
+    <Compile Include="CRUD\Grid\crudGrid.cs" />
+    <Compile Include="CRUD\Properties\crudCode.cs" />
+    <Compile Include="CRUD\Properties\crudSelectListInCombo.cs" />
+    <Compile Include="CRUD\Properties\crudInitiales.cs" />
+    <Compile Include="CRUD\Properties\crudColor.cs" />
+    <Compile Include="CRUD\Properties\crudNom.cs" />
+    <Compile Include="Model\Category.cs" />
+    <Compile Include="Model\CategorySub.cs" />
+    <Compile Include="Model\Compte.cs" />
+    <Compile Include="Model\Beneficiare.cs" />
+    <Compile Include="Model\CompteHasBeneficiare.cs" />
+    <Compile Include="Model\Banque.cs" />
+    <Compile Include="Model\PartialClassCRUD\CompteCRUD.cs" />
+    <Compile Include="Model\PartialClassCRUD\OperationCRUD.cs" />
+    <Compile Include="Model\SearchCriteria.cs" />
+    <Compile Include="Model\RulesOperation2Category.cs" />
+    <Compile Include="Model\OperationHeader.cs" />
+    <Compile Include="Model\Operation.cs" />
+    <Compile Include="RDLC\MoisCategoriesBeneficiairesDataSrc.cs" />
+    <Compile Include="RDLC\MoisCategoriesDataSrc.cs" />
+    <Compile Include="RDLC\ReportInformations.cs" />
+    <Compile Include="RDLC\ReportListEnum.cs" />
+    <Compile Include="RDLC\ReportMng.cs" />
+    <Compile Include="RDLC\ReportMng_SubReportProcessing.cs" />
+    <Compile Include="RDLC\ResourceRDLC.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResourceRDLC.resx</DependentUpon>
+    </Compile>
+    <Compile Include="UserCtrl\ToolStrip\tsComboCompte.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UserCtrl\ToolStrip\tsDateSelector.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UserCtrl\ucCategoryContainer\ucCategoryContainer_Accordion.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserCtrl\ucCategoryContainer\ucCategoryContainer_Populate.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserCtrl\ucCategoryContainer\ucCategoryContainer_Prop.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserCtrl\ucOperationContainer\ucOperationContainer_Resize.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserCtrl\ucOperationContainer\ucOperationContainer_TitleBar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserCtrl\ucOperationHeader.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserCtrl\ucOperationHeader.Designer.cs">
+      <DependentUpon>ucOperationHeader.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserCtrl\ucOperationContainer\ucOperationContainer_Operations.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserCtrl\ucOperationContainer\ucOperationContainer_Prop.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserCtrl\CtrlExtension\LabelEx.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UserCtrl\ucCategoryContainer\ucCategoryContainer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserCtrl\ucCategoryContainer\ucCategoryContainer.Designer.cs">
+      <DependentUpon>ucCategoryContainer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserCtrl\ucOperation\ucOperation_ContextMenu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserCtrl\ucOperation\ucOperation.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserCtrl\ucOperation\ucOperation.Designer.cs">
+      <DependentUpon>ucOperation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserCtrl\ucOperationContainer\ucOperationContainer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserCtrl\ucOperationContainer\ucOperationContainer.Designer.cs">
+      <DependentUpon>ucOperationContainer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserCtrl\ucOperationContainerTitleBar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserCtrl\ucOperationContainerTitleBar.Designer.cs">
+      <DependentUpon>ucOperationContainerTitleBar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserCtrl\ucOperationContainer\ucOperationContainer_Drag.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Windows\FrmBaseGrid.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\FrmBaseGrid.Designer.cs">
+      <DependentUpon>FrmBaseGrid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\FrmImExport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\FrmImExport.Designer.cs">
+      <DependentUpon>FrmImExport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\FrmMain_Text.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\FrmBaseCRUD.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\FrmBaseCRUD.Designer.cs">
+      <DependentUpon>FrmBaseCRUD.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\FrmFind.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\FrmFind.Designer.cs">
+      <DependentUpon>FrmFind.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\FrmCategorizationAuto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\FrmCategorizationAuto.Designer.cs">
+      <DependentUpon>FrmCategorizationAuto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\FrmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\FrmMain.Designer.cs">
+      <DependentUpon>FrmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Windows\FrmReportViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\FrmReportViewer.Designer.cs">
+      <DependentUpon>FrmReportViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\FrmMain_Menu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="RDLC\MoisCategoriesBeneficiaires.rdlc">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RDLC\MoisCategories.rdlc">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RDLC\ResourceRDLC.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResourceRDLC.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserCtrl\ucOperationHeader.resx">
+      <DependentUpon>ucOperationHeader.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserCtrl\ucCategoryContainer\ucCategoryContainer.resx">
+      <DependentUpon>ucCategoryContainer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserCtrl\ucOperation\ucOperation.resx">
+      <DependentUpon>ucOperation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserCtrl\ucOperationContainer\ucOperationContainer.resx">
+      <DependentUpon>ucOperationContainer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserCtrl\ucOperationContainerTitleBar.resx">
+      <DependentUpon>ucOperationContainerTitleBar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\FrmBaseGrid.resx">
+      <DependentUpon>FrmBaseGrid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\FrmBaseCRUD.resx">
+      <DependentUpon>FrmBaseCRUD.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\FrmImExport.resx">
+      <DependentUpon>FrmImExport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\FrmFind.resx">
+      <DependentUpon>FrmFind.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\FrmCategorizationAuto.resx">
+      <DependentUpon>FrmCategorizationAuto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\FrmMain.resx">
+      <DependentUpon>FrmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\FrmReportViewer.resx">
+      <DependentUpon>FrmReportViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\DataSources\Bodget.RDLC.MoisCategoriesBeneficiairesDataSrc.datasource" />
+    <None Include="Properties\DataSources\Bodget.RDLC.MoisCategoriesDataSrc.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\File\OFX\File.OFX\File.OFX\File.OFX.csproj">
+      <Project>{2a2d98ca-5fc9-46d9-9143-8afa5bee11c6}</Project>
+      <Name>File.OFX</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LibodUserCtrl\LibodUserCtrl\LibodUserCtrl.csproj">
+      <Project>{debcb248-3e49-47cd-8939-7f250f81f413}</Project>
+      <Name>LibodUserCtrl</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Libod\Libod\Libod.csproj">
+      <Project>{850a7e25-7836-4245-b64e-5cff581ab817}</Project>
+      <Name>Libod</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\wnd_move_11x11.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\grp_detail_hide_17x9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\grp_detail_show_17x9.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

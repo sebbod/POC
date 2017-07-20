@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{850A7E25-7836-4245-B64E-5CFF581AB817}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Libod</RootNamespace>
+    <AssemblyName>Libod</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Db4objects.Db4o, Version=8.0.249.16098, Culture=neutral, PublicKeyToken=6199cd4f203aa8eb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Db4objects.Db4o.dll</HintPath>
+    </Reference>
+    <Reference Include="Db4objects.Db4o.Linq, Version=8.0.249.16098, Culture=neutral, PublicKeyToken=6199cd4f203aa8eb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Db4objects.Db4o.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Attribute\ForeignKey.cs" />
+    <Compile Include="Attribute\PropertyHeader.cs" />
+    <Compile Include="ClassExtension\ControlEx\TableLayoutPanelEx.cs" />
+    <Compile Include="ClassExtension\IQueryableEx\DynamicQueryable.cs" />
+    <Compile Include="ClassExtension\TypeEx\BoolEx.cs" />
+    <Compile Include="ClassExtension\TypeEx\AssemblyEx.cs" />
+    <Compile Include="ClassExtension\TypeEx\ExpressionEx.cs" />
+    <Compile Include="ClassExtension\TypeEx\TypeEx.cs" />
+    <Compile Include="ClassExtension\TypeEx\IEnumeratorEx.cs" />
+    <Compile Include="ClassExtension\TypeEx\DateTimeEx.cs" />
+    <Compile Include="ClassExtension\TypeEx\DecimalEx.cs" />
+    <Compile Include="ClassExtension\TypeEx\EnumEx.cs" />
+    <Compile Include="ClassExtension\TypeEx\Int16Ex.cs" />
+    <Compile Include="ClassExtension\TypeEx\Int32Ex.cs" />
+    <Compile Include="ClassExtension\TypeEx\Int64Ex.cs" />
+    <Compile Include="ClassExtension\TypeEx\ObjectEx.cs" />
+    <Compile Include="ClassExtension\TypeEx\SortedListEx.cs" />
+    <Compile Include="ClassExtension\TypeEx\StringBuilderEx.cs" />
+    <Compile Include="ClassExtension\TypeEx\StringEx\StringExCase.cs" />
+    <Compile Include="ClassExtension\TypeEx\StringEx\StringExNumber.cs" />
+    <Compile Include="ClassExtension\TypeEx\StringEx\StringEx.cs" />
+    <Compile Include="Ctrl\ctrlItem.cs" />
+    <Compile Include="Ctrl\MoveAndResize.cs" />
+    <Compile Include="Ctrl\Drager.cs" />
+    <Compile Include="Ctrl\Mover.cs" />
+    <Compile Include="Ctrl\Shadow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Culture\Calendrier.cs" />
+    <Compile Include="Culture\Formats.cs" />
+    <Compile Include="DataType\DateSelectorInfo.cs" />
+    <Compile Include="DataType\MultiKeyDictionary.cs" />
+    <Compile Include="Enumerations\CultureName.cs" />
+    <Compile Include="Model\Interface4CRUD\IVisible.cs" />
+    <Compile Include="Model\Interface4CRUD\IWidth.cs" />
+    <Compile Include="Model\Interface4CRUD\ICode.cs" />
+    <Compile Include="Model\Interface4CRUD\IColor.cs" />
+    <Compile Include="Model\Interface4CRUD\IComboItems.cs" />
+    <Compile Include="Model\Interface4CRUD\ICRUD.cs" />
+    <Compile Include="Model\Interface4CRUD\IInitiales.cs" />
+    <Compile Include="Model\Interface4CRUD\INom.cs" />
+    <Compile Include="Model\Interface4CRUD\ISelectListInCombo.cs" />
+    <Compile Include="Model\Interface\ICtrlItem.cs" />
+    <Compile Include="Model\Interface\IBase.cs" />
+    <Compile Include="Model\Interface\IBaseCRUD.cs" />
+    <Compile Include="Model\Interface\IBaseHas.cs" />
+    <Compile Include="ProperpertyCRUD\Interface\IpropertyCRUD.cs" />
+    <Compile Include="ProperpertyCRUD\IpropertyCRUDex.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReflectionEx\PropertyTypeNameValueAttribute.cs" />
+    <Compile Include="ReflectionEx\PropertyTypeNameAttribute.cs" />
+    <Compile Include="ReflectionEx\MethodEx.cs" />
+    <Compile Include="ReflectionEx\PropertyTypeNameValue.cs" />
+    <Compile Include="ReflectionEx\PropertyEx.cs" />
+    <Compile Include="ReflectionEx\PropertyTypeName.cs" />
+    <Compile Include="ResourceText.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResourceText.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Win32\Window.h.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="lib\Db4objects.Db4o.dll" />
+    <Content Include="lib\Db4objects.Db4o.Linq.dll" />
+    <Content Include="lib\Db4objects.Db4o.Linq.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="lib\db4o-7.10-tutorial-net.pdf" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ResourceText.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResourceText.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
