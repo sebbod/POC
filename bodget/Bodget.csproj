@@ -305,17 +305,16 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\File\OFX\File.OFX\File.OFX\File.OFX.csproj">
+    <ProjectReference Include="..\File\OFX\File.OFX.csproj">
       <Project>{2a2d98ca-5fc9-46d9-9143-8afa5bee11c6}</Project>
       <Name>File.OFX</Name>
     </ProjectReference>
-    <ProjectReference Include="..\LibodUserCtrl\LibodUserCtrl\LibodUserCtrl.csproj">
+    <ProjectReference Include="..\LibodUserCtrl\LibodUserCtrl.csproj">
       <Project>{debcb248-3e49-47cd-8939-7f250f81f413}</Project>
       <Name>LibodUserCtrl</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Libod\Libod\Libod.csproj">
+    <ProjectReference Include="..\Libod\Libod.csproj">
       <Project>{850a7e25-7836-4245-b64e-5cff581ab817}</Project>
       <Name>Libod</Name>
     </ProjectReference>

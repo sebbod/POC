@@ -139,16 +139,15 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Libod\Libod\Libod.csproj">
+    <Content Include="lib\SourceGrid.dll" />
+    <Content Include="lib\SourceGrid.pdb" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Libod\Libod.csproj">
       <Project>{850a7e25-7836-4245-b64e-5cff581ab817}</Project>
       <Name>Libod</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="lib\SourceGrid.dll" />
-    <Content Include="lib\SourceGrid.pdb" />
-  </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

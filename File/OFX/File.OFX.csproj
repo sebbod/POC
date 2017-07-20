@@ -67,7 +67,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\SGML\File.SGML\File.SGML.Reader\File.SGML.Reader.csproj">
+    <ProjectReference Include="..\SGML\File.SGML.Reader.csproj">
       <Project>{499527ff-ae52-450f-b3e3-4ad53e1712ad}</Project>
       <Name>File.SGML.Reader</Name>
     </ProjectReference>
