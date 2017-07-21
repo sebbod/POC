@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Linq;
 using Bodget.Data;
 using Bodget.Logic;
 using Bodget.Model;
@@ -179,11 +180,25 @@ namespace Bodget.Windows
                         frm.Show ();
                 }
 
+                private void tsmAppliquerLesRegles_Click (object sender, EventArgs e)
+                {
+                        foreach (Operation op in BaseMng<Operation>.Instance.All.Where (o => o.idCategory == 0 || o.idCategory == 1))
+                        {
+                                long idCategory = op.CategoryIdFromRules ();
+                                if (op.idCategory != idCategory)
+                                {
+                                        BaseMng<Operation>.Instance.Update (op, o => o.idCategory = idCategory);
+                                }
+                        }
+                }
+
                 private void tsmiCheques_Click (object sender, EventArgs e)
                 {
                         var frm = new FrmBaseGrid<Cheque> ();
                         frm.Show ();
                 }
+
+
 
 
 

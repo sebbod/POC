@@ -43,13 +43,14 @@
                         this.tsmCategories = new System.Windows.Forms.ToolStripMenuItem();
                         this.tsmCategotyCRUD = new System.Windows.Forms.ToolStripMenuItem();
                         this.tsmCategoryRules = new System.Windows.Forms.ToolStripMenuItem();
+                        this.tsmiCheques = new System.Windows.Forms.ToolStripMenuItem();
                         this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
                         this.tsmOptions = new System.Windows.Forms.ToolStripMenuItem();
                         this.tsmAffichages = new System.Windows.Forms.ToolStripMenuItem();
                         this.toolStripContainer2 = new System.Windows.Forms.ToolStripContainer();
                         this.ucCategoryContainer = new Bodget.UserCtrl.ucCategoryContainer();
                         this.pnlMenu = new System.Windows.Forms.Panel();
-                        this.tsmiCheques = new System.Windows.Forms.ToolStripMenuItem();
+                        this.tsmAppliquerLesRegles = new System.Windows.Forms.ToolStripMenuItem();
                         this.menuStrip1.SuspendLayout();
                         this.toolStripContainer2.ContentPanel.SuspendLayout();
                         this.toolStripContainer2.SuspendLayout();
@@ -162,7 +163,8 @@
                         // 
                         this.tsmCategories.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmCategotyCRUD,
-            this.tsmCategoryRules});
+            this.tsmCategoryRules,
+            this.tsmAppliquerLesRegles});
                         this.tsmCategories.Name = "tsmCategories";
                         this.tsmCategories.Size = new System.Drawing.Size(152, 22);
                         this.tsmCategories.Text = "Categories";
@@ -170,16 +172,23 @@
                         // tsmCategotyCRUD
                         // 
                         this.tsmCategotyCRUD.Name = "tsmCategotyCRUD";
-                        this.tsmCategotyCRUD.Size = new System.Drawing.Size(108, 22);
+                        this.tsmCategotyCRUD.Size = new System.Drawing.Size(177, 22);
                         this.tsmCategotyCRUD.Text = "Gérer";
                         this.tsmCategotyCRUD.Click += new System.EventHandler(this.tsmCategotyCRUD_Click);
                         // 
                         // tsmCategoryRules
                         // 
                         this.tsmCategoryRules.Name = "tsmCategoryRules";
-                        this.tsmCategoryRules.Size = new System.Drawing.Size(108, 22);
+                        this.tsmCategoryRules.Size = new System.Drawing.Size(177, 22);
                         this.tsmCategoryRules.Text = "Règles";
                         this.tsmCategoryRules.Click += new System.EventHandler(this.tsmCategoryRules_Click);
+                        // 
+                        // tsmiCheques
+                        // 
+                        this.tsmiCheques.Name = "tsmiCheques";
+                        this.tsmiCheques.Size = new System.Drawing.Size(152, 22);
+                        this.tsmiCheques.Text = "Chéques";
+                        this.tsmiCheques.Click += new System.EventHandler(this.tsmiCheques_Click);
                         // 
                         // toolStripMenuItem1
                         // 
@@ -197,7 +206,7 @@
                         // tsmAffichages
                         // 
                         this.tsmAffichages.Name = "tsmAffichages";
-                        this.tsmAffichages.Size = new System.Drawing.Size(152, 22);
+                        this.tsmAffichages.Size = new System.Drawing.Size(130, 22);
                         this.tsmAffichages.Text = "Affichages";
                         this.tsmAffichages.Click += new System.EventHandler(this.tsmAffichages_Click);
                         // 
@@ -240,12 +249,12 @@
                         this.pnlMenu.Size = new System.Drawing.Size(784, 25);
                         this.pnlMenu.TabIndex = 4;
                         // 
-                        // tsmiCheques
+                        // tsmAppliquerLesRegles
                         // 
-                        this.tsmiCheques.Name = "tsmiCheques";
-                        this.tsmiCheques.Size = new System.Drawing.Size(152, 22);
-                        this.tsmiCheques.Text = "Chéques";
-                        this.tsmiCheques.Click += new System.EventHandler(this.tsmiCheques_Click);
+                        this.tsmAppliquerLesRegles.Name = "tsmAppliquerLesRegles";
+                        this.tsmAppliquerLesRegles.Size = new System.Drawing.Size(177, 22);
+                        this.tsmAppliquerLesRegles.Text = "Appliquer les règles";
+                        this.tsmAppliquerLesRegles.Click += new System.EventHandler(this.tsmAppliquerLesRegles_Click);
                         // 
                         // FrmMain
                         // 
@@ -291,6 +300,7 @@
                 private System.Windows.Forms.ToolStripMenuItem tsmImportOperation;
                 private System.Windows.Forms.ToolStripMenuItem tsmImportDataFiles;
                 private System.Windows.Forms.ToolStripMenuItem tsmiCheques;
+                private System.Windows.Forms.ToolStripMenuItem tsmAppliquerLesRegles;
         }
 }
 

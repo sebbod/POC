@@ -32,14 +32,14 @@ namespace Bodget
 
                         Application.EnableVisualStyles ();
                         Application.SetCompatibleTextRenderingDefault (false);
-                        //Application.Run (new FrmMain ());
+                        Application.Run (new FrmMain ());
 
                         //Application.Run (new FrmCategorization ());
                         //Application.Run (new FrmCategorizationAuto (null));
                         //Application.Run (new FrmImExport (ImExport.ActionType.Import));
                         //Application.Run (new FrmBaseCRUD<Cheque> (new Cheque ()));
                         //Application.Run (new FrmChequeList ());
-                        Application.Run (new FrmBaseGrid<Cheque> ());
+                        //Application.Run (new FrmBaseGrid<Cheque> ());
 
                 }
 

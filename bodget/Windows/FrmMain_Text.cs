@@ -36,6 +36,7 @@ namespace Bodget.Windows
                         //      \       \
                         tsmCategotyCRUD.Text = RESX.Manage;
                         tsmCategoryRules.Text = RESX.Rules;
+                        tsmAppliquerLesRegles.Text = (RESX.appliquer + RESX.le + RESX.s + RESX.Space + RESX.Rules).ToTitle ();
 
                         //Options
                         tsmOptions.Text = RESX.Options;

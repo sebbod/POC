@@ -106,6 +106,15 @@ namespace Libod {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to appliquer.
+        /// </summary>
+        public static string appliquer {
+            get {
+                return ResourceManager.GetString("appliquer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Après.
         /// </summary>
         public static string Apres {

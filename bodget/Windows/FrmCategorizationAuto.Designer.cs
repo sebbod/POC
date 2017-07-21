@@ -49,6 +49,7 @@
                         // 
                         // lblCategDest
                         // 
+                        this.lblCategDest.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.lblCategDest.Location = new System.Drawing.Point(436, 84);
                         this.lblCategDest.Name = "lblCategDest";
                         this.lblCategDest.Size = new System.Drawing.Size(295, 23);
@@ -58,6 +59,7 @@
                         // 
                         // cmbCategories
                         // 
+                        this.cmbCategories.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.cmbCategories.FormattingEnabled = true;
                         this.cmbCategories.Location = new System.Drawing.Point(436, 110);
                         this.cmbCategories.Name = "cmbCategories";
@@ -67,6 +69,7 @@
                         // 
                         // lblTexteExistantPourColonne
                         // 
+                        this.lblTexteExistantPourColonne.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.lblTexteExistantPourColonne.Location = new System.Drawing.Point(748, 9);
                         this.lblTexteExistantPourColonne.Name = "lblTexteExistantPourColonne";
                         this.lblTexteExistantPourColonne.Size = new System.Drawing.Size(196, 23);
@@ -76,6 +79,7 @@
                         // 
                         // txtContient
                         // 
+                        this.txtContient.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.txtContient.Location = new System.Drawing.Point(439, 61);
                         this.txtContient.Name = "txtContient";
                         this.txtContient.Size = new System.Drawing.Size(292, 20);
@@ -83,6 +87,7 @@
                         // 
                         // lblNomContient
                         // 
+                        this.lblNomContient.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.lblNomContient.Location = new System.Drawing.Point(436, 35);
                         this.lblNomContient.Name = "lblNomContient";
                         this.lblNomContient.Size = new System.Drawing.Size(295, 23);
@@ -92,6 +97,7 @@
                         // 
                         // btnCancel
                         // 
+                        this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
                         this.btnCancel.Location = new System.Drawing.Point(660, 137);
                         this.btnCancel.Name = "btnCancel";
@@ -103,6 +109,7 @@
                         // 
                         // btnAdd
                         // 
+                        this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.btnAdd.DialogResult = System.Windows.Forms.DialogResult.OK;
                         this.btnAdd.Location = new System.Drawing.Point(583, 137);
                         this.btnAdd.Name = "btnAdd";
@@ -123,6 +130,7 @@
                         // 
                         // lblPropertyName
                         // 
+                        this.lblPropertyName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.lblPropertyName.Location = new System.Drawing.Point(436, 5);
                         this.lblPropertyName.Name = "lblPropertyName";
                         this.lblPropertyName.Size = new System.Drawing.Size(171, 23);
@@ -132,6 +140,7 @@
                         // 
                         // cmbPropertyName
                         // 
+                        this.cmbPropertyName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.cmbPropertyName.FormattingEnabled = true;
                         this.cmbPropertyName.Location = new System.Drawing.Point(608, 11);
                         this.cmbPropertyName.Name = "cmbPropertyName";
@@ -153,6 +162,8 @@
                         // 
                         // lineShape2
                         // 
+                        this.lineShape2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.lineShape2.Name = "lineShape2";
                         this.lineShape2.X1 = 740;
                         this.lineShape2.X2 = 740;
@@ -161,6 +172,8 @@
                         // 
                         // lineShape1
                         // 
+                        this.lineShape1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.lineShape1.Name = "lineShape1";
                         this.lineShape1.X1 = 427;
                         this.lineShape1.X2 = 427;
@@ -169,6 +182,8 @@
                         // 
                         // lstTextExistant
                         // 
+                        this.lstTextExistant.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.lstTextExistant.FormattingEnabled = true;
                         this.lstTextExistant.Location = new System.Drawing.Point(751, 35);
                         this.lstTextExistant.Name = "lstTextExistant";
@@ -178,6 +193,9 @@
                         // 
                         // lstRules
                         // 
+                        this.lstRules.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.lstRules.FormattingEnabled = true;
                         this.lstRules.Location = new System.Drawing.Point(12, 35);
                         this.lstRules.Name = "lstRules";
@@ -196,6 +214,7 @@
                         // 
                         // btnDelete
                         // 
+                        this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.btnDelete.Location = new System.Drawing.Point(436, 137);
                         this.btnDelete.Name = "btnDelete";
                         this.btnDelete.Size = new System.Drawing.Size(71, 26);

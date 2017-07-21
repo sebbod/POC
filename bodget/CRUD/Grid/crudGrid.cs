@@ -84,12 +84,12 @@ namespace Bodget.CRUD
                         var ops = BaseMng<Operation>.Instance.All.Where (op => op.type.Contains (Constantes.OPERATION_TYPE_CHEQUE));
 
                         // liste des chèques nom rapporcher à une opération
-                        var cqs = BaseMng<Cheque>.Instance.All;//.Where (cq => cq.idOperation == 0);
+                        var cqs = BaseMng<Cheque>.Instance.All.Where (cq => cq.idOperation == 0);
 
                         IEnumerable<string> cqNumLst = cqs.Select (cq => cq.code);
 
                         Console.WriteLine ("{0} operations de type CHEQUE EMIS", ops.Count ());
-                        Console.WriteLine ("{0} chèques ne finissant pas par -CHOK", cqs.Count ());
+                        Console.WriteLine ("{0} chèques non liés à des opérations", cqs.Count ());
                         //foreach (var cqCode in cqNumLst.OrderBy(c=>c))
                         //        Console.WriteLine (cqCode);
 
@@ -282,7 +282,7 @@ namespace Bodget.CRUD
 
                                 if (prop.ForeignKey != null)
                                 {
-                                        g[g.Rows.Count - 1, iC] = CreateComboCell (prop);
+                                        g[g.Rows.Count - 1, iC] = CreateComboCell (prop, c);
                                         //vue = SourceGrid.Cells.Views.ComboBox.Default;
                                 }
                                 else
@@ -352,7 +352,7 @@ namespace Bodget.CRUD
                         }
                 }
 
-                private SourceGrid.Cells.ICell CreateComboCell (PropertyTypeNameValueAttribute prop)
+                private SourceGrid.Cells.ICell CreateComboCell (PropertyTypeNameValueAttribute prop, Cheque cq)
                 {
                         // creation de l'object en fcontion du type de la FK
                         // pour récupération des données de la FK à placer dans Cell
@@ -369,6 +369,7 @@ namespace Bodget.CRUD
                                 }
                                 catch
                                 {
+                                        BaseMng<Cheque>.Instance.Update (cq, o => o.idOperation = 0);
                                         //TODO a supprimer
                                         Console.WriteLine ("{0}=>(long)prop.Value={1} but ({2})items.First (o => o.id == (long)prop.Value) return NULL", prop.Name, (long)prop.Value, items.First ().GetType ().Name);
                                 }
@@ -400,14 +401,16 @@ namespace Bodget.CRUD
                         // EN FAIT j'ai besoin de faire des modifs
                         //if (obj.idOperation > 0)
                         //{
-                        //        //BaseMng<Cheque>.Instance.Update (obj, o => o.idOperation = 0);
+                        //        // debug BaseMng<Cheque>.Instance.Update (obj, o => o.idOperation = 0);
                         //        return null;
                         //}
 
                         // il faut faire un update après l'insert sinon la donnée changé par le ValueChange ne sera pas enregistré
                         SourceGrid.Cells.ColumnHeader cHdr = (SourceGrid.Cells.ColumnHeader)g[0, sender.Position.Column];
+
                         //if ((string)cHdr.Tag == "id" + cHdr.Value)
-                        if (sender.Value.GetType () == typeof (ctrlItem<ICtrlItem>))
+                        if (sender.Value != null 
+                         && sender.Value.GetType () == typeof (ctrlItem<ICtrlItem>)) // PLANTE quand sender.Value == null
                         {
                                 ctrlItem<ICtrlItem> item = ((ctrlItem<ICtrlItem>)sender.Value);
                                 object value = item.id;
