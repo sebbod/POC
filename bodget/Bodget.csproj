@@ -61,7 +61,9 @@
     <Reference Include="UIAutomationTypes" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CRUD\Grid\BackColorAlternate\Cell.cs" />
+    <Compile Include="CRUD\Grid\BackColorAlternate\Cell.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="CRUD\Grid\BackColorAlternate\ComboBox.cs" />
     <Compile Include="CRUD\Grid\BackColorAlternate\CheckBox.cs" />
     <Compile Include="CRUD\Properties\crudWidth.cs" />
