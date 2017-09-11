@@ -44,11 +44,15 @@ namespace Bodget.CRUD
                 public Panel    /**/ pnl = new Panel ();
                 public System.Windows.Forms.Button   /**/ btnRapprochement = new System.Windows.Forms.Button ();
                 //Views
-                CellBackColorAlternate viewNormal = new CellBackColorAlternate (Color.AliceBlue, Color.AntiqueWhite);
-                CellBackColorAlternate viewDecimal = new CellBackColorAlternate (Color.AliceBlue, Color.AntiqueWhite);
-                //CheckBoxBackColorAlternate viewCheckBox = new CheckBoxBackColorAlternate(Color.Khaki, Color.DarkKhaki);
-                //ComboBoxBackColorAlternate viewComboBox = new ComboBoxBackColorAlternate (Color.AliceBlue, Color.AntiqueWhite);
 
+                GridBackColorAlternate.Cell viewNormal = new GridBackColorAlternate.Cell (Color.AliceBlue, Color.AntiqueWhite);
+                GridBackColorAlternate.Cell viewDecimal = new GridBackColorAlternate.Cell (Color.AliceBlue, Color.AntiqueWhite);
+
+                /// <summary>
+                /// 
+                /// </summary>
+                /// <param name="parentPanel"></param>
+                /// <returns>this.pnl</returns>
                 public Panel CreateObject (Panel parentPanel)
                 {
                         pnl.Height = Constantes.LINE_HEIGHT * 18;
@@ -56,9 +60,10 @@ namespace Bodget.CRUD
                         parentPanel.Controls.Add (pnl); // il faut le faire ici sinon on ne peut pas utiliser pnl.Width
 
                         CreateGrid ();
-                        g.Left = Constantes.CTRL_MARGE;
+                        //g.Left = Constantes.CTRL_MARGE;
                         g.Height = pnl.Height - Constantes.LINE_HEIGHT * 2;
-                        g.Width = pnl.Width - Constantes.CTRL_MARGE * 2;
+                        //g.Width = pnl.Width - Constantes.CTRL_MARGE * 2;
+                        g.Dock = DockStyle.Top;
                         pnl.Controls.Add (g);
 
                         btnRapprochement.Text = RESX.rapprochement;
@@ -409,7 +414,7 @@ namespace Bodget.CRUD
                         SourceGrid.Cells.ColumnHeader cHdr = (SourceGrid.Cells.ColumnHeader)g[0, sender.Position.Column];
 
                         //if ((string)cHdr.Tag == "id" + cHdr.Value)
-                        if (sender.Value != null 
+                        if (sender.Value != null
                          && sender.Value.GetType () == typeof (ctrlItem<ICtrlItem>)) // PLANTE quand sender.Value == null
                         {
                                 ctrlItem<ICtrlItem> item = ((ctrlItem<ICtrlItem>)sender.Value);

@@ -1,4 +1,5 @@
-﻿using Bodget.CRUD;
+﻿using System;
+using Bodget.CRUD;
 using Libod.Model;
 using System.Windows.Forms;
 
@@ -19,9 +20,8 @@ namespace Bodget.Windows
 
                         Text = o.CRUD ().frmTitle;
 
-
-                        pnl.Dock = DockStyle.Fill;
                         //pnl.BackColor = Color.LightYellow;
+                        pnl.Dock = DockStyle.Fill;
                         Controls.Add (pnl);
 
                         // init
@@ -34,5 +34,23 @@ namespace Bodget.Windows
                         pnlBottom.Dock = DockStyle.Bottom;
                         pnl.Controls.Add (pnlBottom);
                 }
+
+                private int heightDelta4Resize;
+                private void FrmBaseGrid_ResizeBegin (object sender, System.EventArgs e)
+                {
+                        heightDelta4Resize = this.Height;
+                        //Console.WriteLine ("FrmBaseGrid_ResizeBegin - heightDelta4Resize=" + heightDelta4Resize);
+                }
+                private void FrmBaseGrid_ResizeEnd (object sender, System.EventArgs e)
+                {
+                       // Console.WriteLine ("FrmBaseGrid_ResizeEnd - crid.g.Height=" + crid.g.Height);
+                        int heightChange = this.Height - heightDelta4Resize;
+                        crid.pnl.Height                 /**/ += heightChange;
+                        crid.g.Height                   /**/ += heightChange;
+                        crid.btnRapprochement.Top       /**/ += heightChange;
+                       // Console.WriteLine ("FrmBaseGrid_ResizeEnd - crid.g.Height=" + crid.g.Height);
+                }
+
+
         }
 }

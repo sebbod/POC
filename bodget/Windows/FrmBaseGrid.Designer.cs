@@ -35,7 +35,8 @@
                         // 
                         this.txtMsgInfo.BackColor = System.Drawing.SystemColors.Menu;
                         this.txtMsgInfo.Dock = System.Windows.Forms.DockStyle.Bottom;
-                        this.txtMsgInfo.Location = new System.Drawing.Point(0, 452);
+                        this.txtMsgInfo.Location = new System.Drawing.Point(0, 342);
+                        this.txtMsgInfo.Multiline = true;
                         this.txtMsgInfo.Name = "txtMsgInfo";
                         this.txtMsgInfo.Size = new System.Drawing.Size(784, 20);
                         this.txtMsgInfo.TabIndex = 19;
@@ -44,11 +45,13 @@
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
                         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-                        this.ClientSize = new System.Drawing.Size(784, 472);
+                        this.ClientSize = new System.Drawing.Size(784, 362);
                         this.Controls.Add(this.txtMsgInfo);
                         this.MinimumSize = new System.Drawing.Size(600, 400);
                         this.Name = "FrmBaseGrid";
                         this.Text = "FrmBaseGrid";
+                        this.ResizeBegin += new System.EventHandler(this.FrmBaseGrid_ResizeBegin);
+                        this.ResizeEnd += new System.EventHandler(this.FrmBaseGrid_ResizeEnd);
                         this.ResumeLayout(false);
                         this.PerformLayout();
 
