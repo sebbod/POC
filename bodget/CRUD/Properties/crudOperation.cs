@@ -82,6 +82,11 @@ namespace Bodget.CRUD.Properties
                 {
                         txtNom.Text = txtNom.Text.Trim ();
 
+                        if (CRUDmode == Libod.Model.CRUDmode.read)
+                        {
+                                return null;
+                        }
+
                         if (txtNom.Text.Length == 0)
                         {
                                 var ex = new Exception (String.Format (RESX.YouMustEnter, String.Format ("{0} {1}", RESX.un, RESX.nom)).ToSentence ());

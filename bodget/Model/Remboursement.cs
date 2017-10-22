@@ -34,8 +34,15 @@ namespace Bodget.Model
                 new public string ToString ()
                 {
                         var str = RESX.CrochetOuvrant + id.ToString () + RESX.CrochetFermant + RESX.Space +
-                                this.Personne ().nom + RESX.Space +
-                                RESX.doit + RESX.Space + RESX.rembourser + RESX.Space + mt;
+                                this.Personne ().nom + RESX.Space;
+                        if (mt > 0)
+                        {
+                                str +=  RESX.a + RESX.Space + RESX.remboursé + RESX.Space + mt;
+                        }
+                        else
+                        {
+                                str += RESX.doit + RESX.Space + RESX.rembourser + RESX.Space + mt;
+                        }
                         if (idOperationDeRemboursement > 0)
                         {
                                 str += RESX.Space + this.OperationDeRemboursement ().ToString ();

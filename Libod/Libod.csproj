@@ -98,6 +98,7 @@
     <Compile Include="Model\Interface\IBase.cs" />
     <Compile Include="Model\Interface\IBaseCRUD.cs" />
     <Compile Include="Model\Interface\IBaseHas.cs" />
+    <Compile Include="ProperpertyCRUD\CRUDform.cs" />
     <Compile Include="ProperpertyCRUD\CRUDmode.cs" />
     <Compile Include="ProperpertyCRUD\Interface\IpropertyCRUD.cs" />
     <Compile Include="ProperpertyCRUD\IpropertyCRUDex.cs" />

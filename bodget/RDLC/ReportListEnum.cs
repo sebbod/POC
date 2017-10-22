@@ -5,5 +5,6 @@ namespace Bodget.RDLC
         {
                 MoisCategories = 1,
                 MoisCategoriesBeneficiaires = 2,
+                PersonnesRemboursements = 3,
         }
 }

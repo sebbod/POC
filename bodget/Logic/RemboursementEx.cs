@@ -20,7 +20,7 @@ namespace Bodget.Logic
                 }
 
                 /// <summary>
-                /// FK to the Operation
+                /// FK to the Operation qui est associé au remboursement comme ayant servie à remboursé le montant à rembourser
                 /// </summary>
                 /// <param name="o"></param>
                 /// <returns></returns>
@@ -37,9 +37,9 @@ namespace Bodget.Logic
                 public static IEnumerable<Operation> Operations (this Remboursement o)
                 {
                         var has = BaseHasMng<OperationHasRemboursement>.Instance.All.Where (x => x.id2 == o.id);
-                        foreach (var h in has)
+                        foreach (var oHr in has)
                         {
-                                foreach (var i in h.Operations ())
+                                foreach (var i in oHr.Operations ())
                                 {
                                         yield return i;
                                 }

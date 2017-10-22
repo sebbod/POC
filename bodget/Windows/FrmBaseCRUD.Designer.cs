@@ -151,6 +151,7 @@
                         this.Name = "FrmBaseCRUD";
                         this.Text = "FrmBaseCRUD";
                         this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmBaseCRUD_FormClosed);
+                        this.Load += new System.EventHandler(this.FrmBaseCRUD_Load);
                         this.ResumeLayout(false);
                         this.PerformLayout();
 

@@ -6,6 +6,7 @@ using Bodget.Logic;
 using Bodget.Model;
 using System.Linq;
 using Bodget.Windows;
+using Libod.Model;
 using LibodUserCtrl.Extension.WinMenu;
 using RESX = Libod.ResourceText;
 
@@ -59,30 +60,44 @@ namespace Bodget.UserCtrl
                                 var remboursementsEnAttenteDe = Operation.Remboursements ().EnAttenteDe (p);
                                 if (remboursementsEnAttenteDe.Any ())
                                 {
-                                        // si le remboursement n'est pas encore associé à une opération de remboursement c'est le moment de le faire
-                                        tsi = new ToolStripMenuItem ("qui me rembourse avec");
-                                        mnuPersonne.DropDownItems.Add (tsi);
-                                        ToolStripMenuItem mnuQuiMeRembourseAvec = mnuPersonne.DropDownItems[mnuPersonne.DropDownItems.Count - 1] as ToolStripMenuItem;
-
-                                        // liste de toutes les opérations avec remboursement positif de cette personne
-                                        foreach (var op in p.OperationAvecRemboursementsPositifNonAssocieARemboursementNegatif ())
+                                        var lstOpePositive = p.OperationAvecRemboursementsPositifNonAssocieARemboursementNegatif ();
+                                        if (lstOpePositive.Any ())
                                         {
-                                                tsi = new ToolStripMenuItemWith2Values<Personne, Operation> (op.nom + RESX.Space + op.type, p, op, ctrl);
-                                                mnuQuiMeRembourseAvec.DropDownItemClicked += ctxMnu_QuiMaRembourseAvec_ItemClicked;
-                                                mnuQuiMeRembourseAvec.DropDownItems.Add (tsi);
+                                                // si le remboursement n'est pas encore associé à une opération de remboursement c'est le moment de le faire
+                                                tsi = new ToolStripMenuItem ("qui me rembourse avec");
+                                                mnuPersonne.DropDownItems.Add (tsi);
+                                                ToolStripMenuItem mnuQuiMeRembourseAvec = mnuPersonne.DropDownItems[mnuPersonne.DropDownItems.Count - 1] as ToolStripMenuItem;
+
+                                                // liste de toutes les opérations avec remboursement positif de cette personne
+                                                foreach (var op in p.OperationAvecRemboursementsPositifNonAssocieARemboursementNegatif ())
+                                                {
+                                                        tsi = new ToolStripMenuItemWith2Values<Personne, Operation> (op.nom + RESX.Space + op.type, p, op, ctrl);
+                                                        mnuQuiMeRembourseAvec.DropDownItemClicked += ctxMnu_QuiMaRembourseAvec_ItemClicked;
+                                                        mnuQuiMeRembourseAvec.DropDownItems.Add (tsi);
+                                                }
+                                        }
+                                        else
+                                        {
+                                                tsi = new ToolStripMenuItem ("ne peut pas me rembourser.");
+                                                mnuPersonne.DropDownItems.Add (tsi);
                                         }
                                 }
                                 else
                                 {
-                                        // si pas encore de remboursement sur cette opération par cette personne
-                                        tsi = new ToolStripMenuItemWithValue<Personne> ("qui vous doit ?", p, ctrl);
-                                        mnuPersonne.DropDownItemClicked += ctxMnu_Personne_vousDoit_ItemClicked;
-                                        mnuPersonne.DropDownItems.Add (tsi);
-
-                                        // si pas encore de remboursement sur cette opération par cette personne
-                                        tsi = new ToolStripMenuItemWithValue<Personne> ("qui vous donne ?", p, ctrl);
-                                        mnuPersonne.DropDownItemClicked += ctxMnu_Personne_vousDonne_ItemClicked;
-                                        mnuPersonne.DropDownItems.Add (tsi);
+                                        if (Operation.mt > 0)
+                                        {
+                                                // si pas encore de remboursement sur cette opération par cette personne
+                                                tsi = new ToolStripMenuItemWithValue<Personne> (RESX.qui_vous_donne, p, ctrl);
+                                                mnuPersonne.DropDownItemClicked += ctxMnu_Personne_vousDoitOuDonne_ItemClicked;
+                                                mnuPersonne.DropDownItems.Add (tsi);
+                                        }
+                                        else
+                                        {
+                                                // si pas encore de remboursement sur cette opération par cette personne
+                                                tsi = new ToolStripMenuItemWithValue<Personne> (RESX.qui_vous_doit, p, ctrl);
+                                                mnuPersonne.DropDownItemClicked += ctxMnu_Personne_vousDoitOuDonne_ItemClicked;
+                                                mnuPersonne.DropDownItems.Add (tsi);
+                                        }
                                 }
 
                         }
@@ -141,40 +156,58 @@ namespace Bodget.UserCtrl
                         {
                                 // on cloture les 2 opérations de remboursement
                                 BaseMng<Remboursement>.Instance.Update (rembRealiseDe.First (), r => r.idOperationDeRemboursement = Operation.id);
-                                BaseMng<Remboursement>.Instance.Update (rembNegatif.First(), r => r.idOperationDeRemboursement = tsmi.Value2.id);
+                                BaseMng<Remboursement>.Instance.Update (rembNegatif.First (), r => r.idOperationDeRemboursement = tsmi.Value2.id);
                         }
 
                 }
 
-                void ctxMnu_Personne_vousDoit_ItemClicked (object sender, ToolStripItemClickedEventArgs e)
+                void ctxMnu_Personne_vousDoitOuDonne_ItemClicked (object sender, ToolStripItemClickedEventArgs e)
                 {
                         ToolStripItem clickedMenuItem = e.ClickedItem;
 
                         ToolStripMenuItemWithValue<Personne> tsmi = clickedMenuItem as ToolStripMenuItemWithValue<Personne>;
 
                         // ouvrir la fenêtre pour saisir un montant à rembourser
-                        using (var frm = new FrmBaseCRUD<Remboursement> (new Remboursement { idPersonne = tsmi.Value.id, mt = 0 }))
+                        using (var frm = new FrmBaseCRUD<Remboursement> (new Remboursement { idPersonne = tsmi.Value.id, mt = 0 }, CRUDform.insert, true))
                         {
                                 frm.ShowDialog ();
-                                if (frm.o.id > 0)
+
+                                if (frm.o.id > 0)// si insert ok
                                 {
-                                        BaseHasMng<OperationHasRemboursement>.Instance.Insert (new OperationHasRemboursement { id1 = Operation.id, id2 = frm.o.id });
-                                }
-                        }
-                }
+                                        /*  /
+                                         * /    Validation du montant (frm.o.mt) saisie par l'utilisateur
+                                         */
+                                        if (tsmi.Text == RESX.qui_vous_doit)
+                                        {
+                                                if (frm.o.mt > 0)
+                                                {
+                                                        // mettre le montant en négatif
+                                                        BaseMng<Remboursement>.Instance.Update (frm.o, r => r.mt = r.mt * -1);
+                                                }
+                                        }
+                                        if (tsmi.Text == RESX.qui_vous_donne)
+                                        {
+                                                if (frm.o.mt < 0)
+                                                {
+                                                        // mettre le montant en positif
+                                                        BaseMng<Remboursement>.Instance.Update (frm.o, r => r.mt = r.mt * -1);
+                                                }
+                                        }
 
-                void ctxMnu_Personne_vousDonne_ItemClicked (object sender, ToolStripItemClickedEventArgs e)
-                {
-                        ToolStripItem clickedMenuItem = e.ClickedItem;
+                                        if (Operation.mt > 0 && frm.o.mt > Operation.mt)
+                                        {
+                                                BaseMng<Remboursement>.Instance.Delete (frm.o);
+                                                //TODO gestion d'erreur
+                                                //throw new OperationCanceledException ("vous ne pouvez pas saisir un montant supérieur à la valeur de l'opération");
+                                        }
+                                        if (Operation.mt < 0 && frm.o.mt < Operation.mt)
+                                        {
+                                                BaseMng<Remboursement>.Instance.Delete (frm.o);
+                                                //TODO gestion d'erreur
+                                                //throw new OperationCanceledException ("vous ne pouvez pas saisir un montant inférieur à la valeur de l'opération");
+                                        }
 
-                        ToolStripMenuItemWithValue<Personne> tsmi = clickedMenuItem as ToolStripMenuItemWithValue<Personne>;
-
-                        // ouvrir la fenêtre pour saisir un montant à rembourser
-                        using (var frm = new FrmBaseCRUD<Remboursement> (new Remboursement { idPersonne = tsmi.Value.id, mt = 0 }))
-                        {
-                                frm.ShowDialog ();
-                                if (frm.o.id > 0)
-                                {
+                                        // ajout de la liaison
                                         BaseHasMng<OperationHasRemboursement>.Instance.Insert (new OperationHasRemboursement { id1 = Operation.id, id2 = frm.o.id });
                                 }
                         }

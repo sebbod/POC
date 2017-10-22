@@ -196,7 +196,8 @@ namespace Bodget.Data
                                 long nextId = 1;
                                 if(_all.Count > 0)
                                 {
-                                        nextId = _all.OrderBy (o => o.id).First().id;
+                                        //nextId = _all.OrderBy (o => o.id).Last().id;
+                                        nextId = _all.Last ().id;       // more quickly
                                 }
                                 item.id = nextId + 1;
                         }

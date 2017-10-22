@@ -70,6 +70,15 @@ namespace Libod {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to a.
+        /// </summary>
+        public static string a {
+            get {
+                return ResourceManager.GetString("a", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to à.
         /// </summary>
         public static string aAccentue {
@@ -997,6 +1006,24 @@ namespace Libod {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to qui vous doit ?.
+        /// </summary>
+        public static string qui_vous_doit {
+            get {
+                return ResourceManager.GetString("qui_vous_doit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to qui vous donne ?.
+        /// </summary>
+        public static string qui_vous_donne {
+            get {
+                return ResourceManager.GetString("qui_vous_donne", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to rapprochement.
         /// </summary>
         public static string rapprochement {
@@ -1011,6 +1038,15 @@ namespace Libod {
         public static string recherchee {
             get {
                 return ResourceManager.GetString("recherchee", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to remboursé.
+        /// </summary>
+        public static string remboursé {
+            get {
+                return ResourceManager.GetString("remboursé", resourceCulture);
             }
         }
         

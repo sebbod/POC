@@ -7,6 +7,10 @@ using RESX = Libod.ResourceText;
 
 namespace Bodget.Model
 {
+        /// <summary>
+        /// une opération peut avoir plusieurs remboursements d'associés à elle mais elles auront dans ce cas une personne différente pour chaque remboursement
+        /// et un remboursement ne peut être lié qu'a une seul opération
+        /// </summary>
         public class OperationHasRemboursement: IBaseHas
         {
                 /// <summary>

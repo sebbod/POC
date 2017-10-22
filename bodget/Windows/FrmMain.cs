@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using Libod.Ctrl;
 using Libod.DataType;
+using Libod.Model;
 using RESX = Libod.ResourceText;
 
 namespace Bodget.Windows
@@ -71,10 +72,18 @@ namespace Bodget.Windows
                         //ri.TypeReport = ReportListEnum.MoisCategories;
                         //ReportMng.createLocalize2FormReportViewer (ri);
 
-                        //ReportInformations ri = new ReportInformations ();
+                        /*  /
+                         * /    Mise en commentaire pour tester le nouveau report PersonnesRemboursements
+                         */
+                        //ri.Datasource = new Dictionary<string, object> ();
+                        //ri.Datasource.Add ("DataSet1", MoisCategoriesBeneficiairesDataSrc.Get (ucCategoryContainer.FilterByDateInfo.dtStart, ucCategoryContainer.FilterByDateInfo.dtStop));
+                        //ri.TypeReport = ReportListEnum.MoisCategoriesBeneficiaires;
+                        //ReportMng.createLocalize2FormReportViewer (ri);
+
+
                         ri.Datasource = new Dictionary<string, object> ();
-                        ri.Datasource.Add ("DataSet1", MoisCategoriesBeneficiairesDataSrc.Get (ucCategoryContainer.FilterByDateInfo.dtStart, ucCategoryContainer.FilterByDateInfo.dtStop));
-                        ri.TypeReport = ReportListEnum.MoisCategoriesBeneficiaires;
+                        ri.Datasource.Add ("DataSet1", PersonnesRemboursementsDataSrc.Get ());
+                        ri.TypeReport = ReportListEnum.PersonnesRemboursements;
                         ReportMng.createLocalize2FormReportViewer (ri);
                 }
 
@@ -207,7 +216,7 @@ namespace Bodget.Windows
 
                 private void tsmiRemboursements_Click (object sender, EventArgs e)
                 {
-                        using (var frm = new FrmBaseCRUD<Remboursement> (null))
+                        using (var frm = new FrmBaseCRUD<Remboursement> (null,CRUDform.select | CRUDform.insert | CRUDform.update | CRUDform.delete))
                         {
                                 frm.ShowDialog ();
                         }

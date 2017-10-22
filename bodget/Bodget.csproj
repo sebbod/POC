@@ -68,7 +68,7 @@
     <Compile Include="CRUD\Grid\BackColorAlternate\CheckBox.cs" />
     <Compile Include="CRUD\Properties\crudOperation.cs" />
     <Compile Include="CRUD\Properties\crudPersonne.cs" />
-    <Compile Include="CRUD\Properties\crudMt.cs" />
+    <Compile Include="CRUD\Properties\crudMontant.cs" />
     <Compile Include="CRUD\Properties\crudWidth.cs" />
     <Compile Include="CRUD\Properties\crudVisible.cs" />
     <Compile Include="Data\BaseMng.cs" />
@@ -125,6 +125,7 @@
     <Compile Include="Model\RulesOperation2Category.cs" />
     <Compile Include="Model\OperationHeader.cs" />
     <Compile Include="Model\Operation.cs" />
+    <Compile Include="RDLC\PersonnesRemboursementsDataSrc.cs" />
     <Compile Include="RDLC\MoisCategoriesBeneficiairesDataSrc.cs" />
     <Compile Include="RDLC\MoisCategoriesDataSrc.cs" />
     <Compile Include="RDLC\ReportInformations.cs" />
@@ -262,6 +263,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="RDLC\PersonnesRemboursements.rdlc">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="RDLC\MoisCategoriesBeneficiaires.rdlc">
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -310,6 +314,7 @@
     </EmbeddedResource>
     <None Include="Properties\DataSources\Bodget.RDLC.MoisCategoriesBeneficiairesDataSrc.datasource" />
     <None Include="Properties\DataSources\Bodget.RDLC.MoisCategoriesDataSrc.datasource" />
+    <None Include="Properties\DataSources\Bodget.RDLC.PersonnesRemboursementsDataSrc.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

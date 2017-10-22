@@ -57,16 +57,21 @@ namespace Bodget.CRUD.Properties
                         txtMontant.Width = parentPanel.Width - txtMontant.Left - Constantes.CTRL_MARGE;
                         txtMontant.Height = Constantes.CTRL_HEIGHT;
                         pnl.Controls.Add (txtMontant);
-                        if(txtMontant.Text.StartsWith("-"))
+                        if (txtMontant.Text.StartsWith ("-"))
                         {
                                 txtMontant.SelectionStart = 1;
                                 txtMontant.SelectionLength = txtMontant.Text.Length - 1;
                         }
-                        txtMontant.Focus ();
+                        else
+                        {
+                                txtMontant.SelectionStart = 0;
+                                txtMontant.SelectionLength = txtMontant.Text.Length;
+                        }
 
                         try
                         {
                                 parentPanel.Controls.Add (pnl);
+                                txtMontant.Focus ();
                         }
                         catch (ObjectDisposedException odex)
                         {

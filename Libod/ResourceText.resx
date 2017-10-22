@@ -328,7 +328,7 @@
   </data>
         <data name="montant" xml:space="preserve">
     <value>montant</value>
-  </data> 
+  </data>
         <data name="YouMustEnter" xml:space="preserve">
     <value>vous devez saisir {0}</value>
     <comment>0 = la colonne, la catégorie, le truc, etc...</comment>
@@ -533,7 +533,20 @@
         <data name="rembourser" xml:space="preserve">
     <value>rembourser</value>
   </data>
+        <data name="remboursé" xml:space="preserve">
+    <value>remboursé</value>
+  </data>
         <data name="Remboursement" xml:space="preserve">
     <value>Remboursement</value>
   </data>
+        <data name="a" xml:space="preserve">
+    <value>a</value>
+  </data>
+        <data name="qui_vous_doit" xml:space="preserve">
+    <value>qui vous doit ?</value>
+  </data>
+        <data name="qui_vous_donne" xml:space="preserve">
+    <value>qui vous donne ?</value>
+  </data>
+
 </root>

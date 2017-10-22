@@ -41,9 +41,21 @@ namespace Bodget.Windows
                         }
                 }
 
-                public FrmBaseCRUD (T o)
+                private CRUDform CRUDform { get; set; }
+
+                /// <summary>
+                /// Par defaut cette fenêtre s'ouvre en selection, insertion et modification
+                /// </summary>
+                /// <param name="o"></param>
+                /// <param name="CRUDform"></param>
+                /// <param name="closeAfterfirstAction"></param>
+                public FrmBaseCRUD (T o
+                        , CRUDform CRUDform = CRUDform.select | CRUDform.insert | CRUDform.update
+                        , bool closeAfterfirstAction = false)
                 {
                         InitializeComponent ();
+
+                        this.CRUDform = CRUDform;
 
                         if (o == null)
                         {
@@ -63,6 +75,8 @@ namespace Bodget.Windows
                         //btnDelete.Enabled = false;
                         lblLstObjet.Text = this.o.CRUD ().lblLstObjet;
 
+                        lstObjet.Enabled = !closeAfterfirstAction;
+
                         // init
                         foreach (var r in BaseMng<T>.Instance.All)
                         {
@@ -70,6 +84,11 @@ namespace Bodget.Windows
                         }
                 }
 
+                private void FrmBaseCRUD_Load (object sender, EventArgs e)
+                {
+                        btnAdd.Visible = ((CRUDform & CRUDform.insert) == CRUDform.insert) || ((CRUDform & CRUDform.update) == CRUDform.update);
+                        btnDelete.Visible = (CRUDform & CRUDform.delete) == CRUDform.delete;
+                }
 
                 private void lstObjet_SelectedIndexChanged (object sender, EventArgs e)
                 {
@@ -90,6 +109,78 @@ namespace Bodget.Windows
                         // d'un qui serait déja en mémoire (suite à un une demande d'affichage précédente de l'utilisateur)
                          */
                         o = (T)item.Value;
+                }
+
+                
+
+
+
+                private void Insert ()
+                {
+                        try
+                        {
+                                // DEBUG
+                                //BaseMng<T>.Instance.ConsoleListResult ();
+                                //Console.WriteLine (o.ToString());
+
+                                o.CRUD ().Insert ();
+                                lstObjet.Items.Add (new ctrlItem { Text = o.ToString (), Value = o });
+                                if (lstObjet.Enabled)
+                                {
+                                        o = new T ();
+                                }
+                        }
+                        catch (OperationCanceledException ex)
+                        {
+                                txtMsgInfo.Text = String.Format ("{0}/{1} {2}", RESX.ce, RESX.cette, String.Format (RESX.AlreadyExist, o.CRUD ().ObjectName)).ToSentence ();
+                        }
+                }
+
+                private void Update2 ()
+                {
+                        try
+                        {
+                                o.CRUD ().Update ();
+                                o = o.CRUD ().Object; // MAJ de l'objet local
+                                int itemIndex = 0;
+                                foreach (ctrlItem i in lstObjet.Items)
+                                {
+                                        if (((T)i.Value).id == o.id)
+                                        {
+                                                i.Value = o;
+                                                i.Text = o.ToString ();
+                                                lstObjet.Items[itemIndex] = lstObjet.Items[itemIndex];        // refresh
+                                                break;
+                                        }
+                                        itemIndex++;
+                                }
+                        }
+                        catch (OperationCanceledException ex)
+                        {
+                                txtMsgInfo.Text = String.Format ("{0}/{1} {2}", RESX.ce, RESX.cette, String.Format (RESX.AlreadyExist, o.CRUD ().ObjectName)).ToSentence ();
+                        }
+                }
+
+                private void Delete ()
+                {
+                        try
+                        {
+                                o.CRUD ().Delete ();
+                                ctrlItem iDeleted = null; 
+                                foreach (ctrlItem i in lstObjet.Items)
+                                {
+                                        if (((T)i.Value).id == o.id)
+                                        {
+                                                iDeleted = i;
+                                        }
+                                }
+                                lstObjet.Items.Remove (iDeleted);
+                                o = new T ();
+                        }
+                        catch (OperationCanceledException ex)
+                        {
+                                txtMsgInfo.Text = String.Format ("{0}/{1} {2}", RESX.ce, RESX.cette, String.Format (RESX.AlreadyExist, o.CRUD ().ObjectName)).ToSentence ();
+                        }
                 }
 
                 private bool Validation ()
@@ -119,68 +210,9 @@ namespace Bodget.Windows
                                 // "Enregistrer"
                                 Update2 ();
                         }
-                }
-
-
-
-                private void Insert ()
-                {
-                        try
+                        if (!lstObjet.Enabled)
                         {
-                                o.CRUD ().Insert ();
-                                lstObjet.Items.Add (new ctrlItem { Text = o.ToString (), Value = o });
-                                o = new T ();
-                        }
-                        catch (OperationCanceledException ex)
-                        {
-                                txtMsgInfo.Text = String.Format ("{0} {1}", RESX.cette, String.Format (RESX.AlreadyExist, o.CRUD ().ObjectName)).ToSentence ();
-                        }
-                }
-
-                private void Update2 ()
-                {
-                        try
-                        {
-                                o.CRUD ().Update ();
-                                o = o.CRUD ().Object; // MAJ de l'objet local
-                                int itemIndex = 0;
-                                foreach (ctrlItem i in lstObjet.Items)
-                                {
-                                        if (((T)i.Value).id == o.id)
-                                        {
-                                                i.Value = o;
-                                                i.Text = o.ToString ();
-                                                lstObjet.Items[itemIndex] = lstObjet.Items[itemIndex];        // refresh
-                                                break;
-                                        }
-                                        itemIndex++;
-                                }
-                        }
-                        catch (OperationCanceledException ex)
-                        {
-                                txtMsgInfo.Text = String.Format ("{0} {1}", RESX.cette, String.Format (RESX.AlreadyExist, o.CRUD ().ObjectName)).ToSentence ();
-                        }
-                }
-
-                private void Delete ()
-                {
-                        try
-                        {
-                                o.CRUD ().Delete ();
-                                ctrlItem iDeleted = null; 
-                                foreach (ctrlItem i in lstObjet.Items)
-                                {
-                                        if (((T)i.Value).id == o.id)
-                                        {
-                                                iDeleted = i;
-                                        }
-                                }
-                                lstObjet.Items.Remove (iDeleted);
-                                o = new T ();
-                        }
-                        catch (OperationCanceledException ex)
-                        {
-                                txtMsgInfo.Text = String.Format ("{0} {1}", RESX.cette, String.Format (RESX.AlreadyExist, o.CRUD ().ObjectName)).ToSentence ();
+                                Close ();
                         }
                 }
 
@@ -192,12 +224,18 @@ namespace Bodget.Windows
                 private void btnDelete_Click (object sender, EventArgs e)
                 {
                         Delete ();
+                        if (!lstObjet.Enabled)
+                        {
+                                Close ();
+                        }
                 }
 
                 private void FrmBaseCRUD_FormClosed (object sender, FormClosedEventArgs e)
                 {
 
                 }
+
+
 
 
 
