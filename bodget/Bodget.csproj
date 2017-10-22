@@ -66,6 +66,9 @@
     </Compile>
     <Compile Include="CRUD\Grid\BackColorAlternate\ComboBox.cs" />
     <Compile Include="CRUD\Grid\BackColorAlternate\CheckBox.cs" />
+    <Compile Include="CRUD\Properties\crudOperation.cs" />
+    <Compile Include="CRUD\Properties\crudPersonne.cs" />
+    <Compile Include="CRUD\Properties\crudMt.cs" />
     <Compile Include="CRUD\Properties\crudWidth.cs" />
     <Compile Include="CRUD\Properties\crudVisible.cs" />
     <Compile Include="Data\BaseMng.cs" />
@@ -78,6 +81,9 @@
     <Compile Include="Logic\CompteHasBeneficiareEx.cs" />
     <Compile Include="Logic\BeneficiareEx.cs" />
     <Compile Include="Logic\ChequeEx.cs" />
+    <Compile Include="Logic\PersonneEx.cs" />
+    <Compile Include="Logic\OperationHasRemboursementEx.cs" />
+    <Compile Include="Logic\RemboursementEx.cs" />
     <Compile Include="Logic\PropertyTypeNameAttributeEx.cs" />
     <Compile Include="Logic\PropertyTypeNameValueEx.cs" />
     <Compile Include="Logic\PropertyTypeNameEx.cs" />
@@ -86,6 +92,14 @@
     <Compile Include="Data\BaseMngV1.cs" />
     <Compile Include="Logic\OperationEx.cs" />
     <Compile Include="Model\Cheque.cs" />
+    <Compile Include="Model\CompteHasPersonne.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Model\OperationHasRemboursement.cs" />
+    <Compile Include="Model\PartialClassCRUD\RemboursementCRUD.cs" />
+    <Compile Include="Model\Remboursement.cs" />
+    <Compile Include="Model\PartialClassCRUD\PersonnesCRUD.cs" />
+    <Compile Include="Model\Personnes.cs" />
     <Compile Include="Model\PartialClassCRUD\PropertyHeaderCRUD.cs" />
     <Compile Include="Model\PropertyHeader.cs" />
     <Compile Include="Model\PartialClassCRUD\CategoryCRUD.cs" />

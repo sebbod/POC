@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Bodget.Data;
 using Db4objects.Db4o;
 using Libod.Model;
 using RESX = Libod.ResourceText;
@@ -23,48 +26,48 @@ namespace Bodget.Model
                 /// </summary>
                 public long id2 { get; set; }
 
-                ///// <summary>
-                ///// idCompte
-                ///// </summary>
-                //public long id1
-                //{
-                //        get
-                //        {
-                //                return idCompte;
-                //        }
-                //        set
-                //        {
-                //                idCompte = value;
-                //        }
-                //}
-
-                ///// <summary>
-                ///// idBeneficiare
-                ///// </summary>
-                //public long id2
-                //{
-                //        get
-                //        {
-                //                return idBeneficiare;
-                //        }
-                //        set
-                //        {
-                //                idBeneficiare = value;
-                //        }
-                //}
-                ///// <summary>
-                ///// id1
-                ///// </summary>
-                //public long     /**/ idCompte           /**/{ get; set; }
-                ///// <summary>
-                ///// id2
-                ///// </summary>
-                //public long     /**/ idBeneficiare      /**/{ get; set; }
-
                 new public string ToString ()
                 {
                         return RESX.CrochetOuvrant + id1.ToString () + RESX.CrochetFermant + RESX.Space +
                                RESX.CrochetOuvrant + id2.ToString () + RESX.CrochetFermant;
+                }
+
+                //public IEnumerable<T1> lstObj1<T1> (IBaseHas has)
+                //        where T1: IBase
+                //{
+                //        return BaseMng<T1>.Instance.All.Where (x => x.id == has.id1);  // id1 => idCompte
+                //}
+
+                //public IEnumerable<T2> lstObj2<T2> (IBaseHas has)
+                //        where T2: IBase
+                //{
+                //        return BaseMng<T2>.Instance.All.Where (x => x.id == has.id2);  // id1 => idBeneficiare
+                //}
+
+                public void UpdateLstId2InObj1<T1> (IBaseHas has)
+                        where T1: IBase
+                {
+                        foreach (T1 o1 in BaseMng<T1>.Instance.All.Where (x => x.id == has.id1))
+                        {
+                                Compte oCpt = o1 as Compte;
+                                foreach (Operation op in BaseMng<Operation>.Instance.All.Where (o => o.idCompte == oCpt.id))
+                                {
+                                        BaseMng<Operation>.Instance.Update (op, o => o.idBeneficiare = has.id2);
+                                }
+                        }
+                }
+
+                public void DeleteLstId2InObj1<T1> (IBaseHas has)
+                        where T1: IBase
+                {
+                        foreach (T1 o1 in BaseMng<T1>.Instance.All.Where (x => x.id == has.id1))
+                        {
+                                Compte oCpt = o1 as Compte;
+                                foreach (Operation op in BaseMng<Operation>.Instance.All.Where (o => o.idCompte == oCpt.id))
+                                {
+                                        BaseMng<Operation>.Instance.Update (op, o => o.idBeneficiare = 0);
+                                }
+                        }
                 }
 
                 public override bool Equals (object value)

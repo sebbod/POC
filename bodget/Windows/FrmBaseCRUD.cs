@@ -13,7 +13,7 @@ using RESX = Libod.ResourceText;
 namespace Bodget.Windows
 {
         public partial class FrmBaseCRUD<T>: Form
-                where T: IBase, IBaseCRUD<T>, INom, new ()
+                where T: IBase, IBaseCRUD<T>, new ()
         {
 
                 private T _o;
@@ -60,7 +60,7 @@ namespace Bodget.Windows
                         btnAdd.Text = RESX.Add;
                         btnCancel.Text = RESX.Cancel;
                         btnDelete.Text = RESX.Delete;
-                        btnDelete.Enabled = false;
+                        //btnDelete.Enabled = false;
                         lblLstObjet.Text = this.o.CRUD ().lblLstObjet;
 
                         // init
@@ -162,6 +162,28 @@ namespace Bodget.Windows
                         }
                 }
 
+                private void Delete ()
+                {
+                        try
+                        {
+                                o.CRUD ().Delete ();
+                                ctrlItem iDeleted = null; 
+                                foreach (ctrlItem i in lstObjet.Items)
+                                {
+                                        if (((T)i.Value).id == o.id)
+                                        {
+                                                iDeleted = i;
+                                        }
+                                }
+                                lstObjet.Items.Remove (iDeleted);
+                                o = new T ();
+                        }
+                        catch (OperationCanceledException ex)
+                        {
+                                txtMsgInfo.Text = String.Format ("{0} {1}", RESX.cette, String.Format (RESX.AlreadyExist, o.CRUD ().ObjectName)).ToSentence ();
+                        }
+                }
+
                 private void btnCancel_Click (object sender, EventArgs e)
                 {
                         Close ();
@@ -169,7 +191,7 @@ namespace Bodget.Windows
 
                 private void btnDelete_Click (object sender, EventArgs e)
                 {
-
+                        Delete ();
                 }
 
                 private void FrmBaseCRUD_FormClosed (object sender, FormClosedEventArgs e)

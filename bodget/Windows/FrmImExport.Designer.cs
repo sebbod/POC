@@ -39,7 +39,7 @@
                         this.txtMsgInfo.Dock = System.Windows.Forms.DockStyle.Bottom;
                         this.txtMsgInfo.Location = new System.Drawing.Point(0, 249);
                         this.txtMsgInfo.Name = "txtMsgInfo";
-                        this.txtMsgInfo.Size = new System.Drawing.Size(280, 20);
+                        this.txtMsgInfo.Size = new System.Drawing.Size(304, 20);
                         this.txtMsgInfo.TabIndex = 29;
                         // 
                         // pnl
@@ -49,13 +49,13 @@
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.pnl.Location = new System.Drawing.Point(12, 12);
                         this.pnl.Name = "pnl";
-                        this.pnl.Size = new System.Drawing.Size(256, 204);
+                        this.pnl.Size = new System.Drawing.Size(280, 204);
                         this.pnl.TabIndex = 30;
                         // 
                         // btnAction
                         // 
                         this.btnAction.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-                        this.btnAction.Location = new System.Drawing.Point(193, 222);
+                        this.btnAction.Location = new System.Drawing.Point(217, 222);
                         this.btnAction.Name = "btnAction";
                         this.btnAction.Size = new System.Drawing.Size(75, 23);
                         this.btnAction.TabIndex = 31;
@@ -66,7 +66,7 @@
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
                         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-                        this.ClientSize = new System.Drawing.Size(280, 269);
+                        this.ClientSize = new System.Drawing.Size(304, 269);
                         this.Controls.Add(this.btnAction);
                         this.Controls.Add(this.pnl);
                         this.Controls.Add(this.txtMsgInfo);

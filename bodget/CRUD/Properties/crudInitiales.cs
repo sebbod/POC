@@ -17,6 +17,12 @@ namespace Bodget.CRUD.Properties
                 {
                         o = mdl;
                 }
+                public CRUDmode CRUDmode { get; set; }
+                public crudInitiales (T mdl, CRUDmode CRUDmode)
+                {
+                        o = mdl;
+                        this.CRUDmode = CRUDmode;
+                }
 
                 public T Object
                 {
@@ -78,6 +84,11 @@ namespace Bodget.CRUD.Properties
                 public void Update ()
                 {
                         BaseMng<T>.Instance.Update (o, x => x.initiales = txt.Text);
+                }
+
+                public void Delete ()
+                {
+                        throw new NotImplementedException ();
                 }
         }
 }

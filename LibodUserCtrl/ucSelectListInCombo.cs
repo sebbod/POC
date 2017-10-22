@@ -18,6 +18,15 @@ namespace LibodUserCtrl
         public partial class ucSelectListInCombo<T>: UserControl
                 where T: ICtrlItem
         {
+                private readonly List<T> _SelectedValue = new List<T> ();
+                private void RefreshSelectedValue ()
+                {
+                        _SelectedValue.Clear ();
+                        foreach (ctrlItem<T> ci in lstResult.Items.Cast<ctrlItem<T>> ().ToList ())
+                        {
+                                _SelectedValue.Add (ci.Value);
+                        }
+                }
                 /// <summary>
                 /// sample can containt list of CompteHasBeneficiare object
                 /// </summary>
@@ -25,10 +34,7 @@ namespace LibodUserCtrl
                 {
                         get
                         {
-                                foreach (ctrlItem<T> ci in lstResult.Items.Cast<ctrlItem<T>> ().ToList())
-                                {
-                                        yield return ci.Value;
-                                }
+                                return _SelectedValue;
                         }
                 }
 
@@ -91,15 +97,17 @@ namespace LibodUserCtrl
                         {
                                 lstResult.Items.Add (cmbSelector.SelectedItem);
                                 cmbSelector.Items.Remove (cmbSelector.SelectedItem);
+                                RefreshSelectedValue ();
                         }
                 }
 
-                protected virtual  void btnDel_Click (object sender, EventArgs e)
+                protected virtual void btnDel_Click (object sender, EventArgs e)
                 {
                         if (lstResult.SelectedItem != null)
                         {
                                 cmbSelector.Items.Add (lstResult.SelectedItem);
                                 lstResult.Items.Remove (lstResult.SelectedItem);
+                                RefreshSelectedValue ();
                         }
                 }
         }

@@ -53,6 +53,23 @@ namespace Bodget.Logic
                 }
 
                 /// <summary>
+                /// FK to the OperationHasRemboursement => Remboursement (toutes personnes confondus)
+                /// </summary>
+                /// <param name="o"></param>
+                /// <returns></returns>
+                public static IEnumerable<Remboursement> Remboursements (this Operation o)
+                {
+                        var has = BaseHasMng<OperationHasRemboursement>.Instance.All.Where (x => x.id1 == o.id);
+                        foreach (var h in has)
+                        {
+                                foreach (var i in h.Remboursements ())
+                                {
+                                        yield return i;
+                                }
+                        }
+                }
+
+                /// <summary>
                 /// Format le nom de l'opération en un code chéque valide
                 /// <para>testé uniquement pour le CA</para>
                 /// </summary>
@@ -60,7 +77,7 @@ namespace Bodget.Logic
                 /// <returns></returns>
                 public static String ChequeCode (this Operation o)
                 {
-                        return o.nom.FirstChar(7);
+                        return o.nom.FirstChar (7);
                 }
 
                 /// <summary>
@@ -82,7 +99,7 @@ namespace Bodget.Logic
                                         throw new Exception ("there is a problème o.idCheque != cq.id");
                                 }
                         }
-                        if (cq.dt == default(DateTime))
+                        if (cq.dt == default (DateTime))
                         {
                                 return 0;
                         }

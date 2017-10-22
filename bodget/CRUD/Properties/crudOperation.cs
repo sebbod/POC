@@ -2,23 +2,28 @@
 using System.Linq;
 using System.Windows.Forms;
 using Bodget.Data;
+using Bodget.Model;
 using Libod;
 using Libod.Model;
 using RESX = Libod.ResourceText;
 
 namespace Bodget.CRUD.Properties
 {
-        public class crudNom<T>: IpropertyCRUD<T>
-                where T: IBase, INom
+        /// <summary>
+        /// seul l'affichage en lecture seul est codé pour l'instant
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        public class crudOperation<T>: IpropertyCRUD<T>
+                where T: IBase, IOperationDeRemboursement
         {
                 public T o { get; set; }
 
-                public crudNom (T mdl)
+                public crudOperation (T mdl)
                 {
                         o = mdl;
                 }
                 public CRUDmode CRUDmode { get; set; }
-                public crudNom (T mdl, CRUDmode CRUDmode)
+                public crudOperation (T mdl, CRUDmode CRUDmode)
                 {
                         o = mdl;
                         this.CRUDmode = CRUDmode;
@@ -40,17 +45,23 @@ namespace Bodget.CRUD.Properties
                         pnl.Height = Constantes.LINE_HEIGHT;
                         pnl.Dock = DockStyle.Bottom;
 
-                        lblNom.Text = RESX.nom.ToLabel ();
+                        lblNom.Text = RESX.operation.ToLabel ();
                         lblNom.Left = Constantes.CTRL_MARGE;
                         lblNom.Width = 74;
                         lblNom.Height = Constantes.CTRL_HEIGHT;
                         pnl.Controls.Add (lblNom);
 
-                        txtNom.Text = o.nom;
+                        if (o.idOperationDeRemboursement > 0)
+                        {
+                                txtNom.Text = BaseMng<Operation>.Instance.Get (o.idOperationDeRemboursement).ToString();
+                        }
                         txtNom.Left = lblNom.Width + Constantes.CTRL_MARGE;
                         txtNom.Width = parentPanel.Width - txtNom.Left - Constantes.CTRL_MARGE;
                         txtNom.Height = Constantes.CTRL_HEIGHT;
+                        txtNom.Enabled = CRUDmode.write == CRUDmode;
                         pnl.Controls.Add (txtNom);
+
+
 
                         try
                         {
@@ -83,13 +94,13 @@ namespace Bodget.CRUD.Properties
 
                 public void Insert ()
                 {
-                        o.nom = txtNom.Text;
-                        BaseMng<T>.Instance.Insert (o);
+                        //o.idPersonne = txtNom.Text;
+                        //BaseMng<T>.Instance.Insert (o);
                 }
 
                 public void Update ()
                 {
-                        BaseMng<T>.Instance.Update (o, x => x.nom = txtNom.Text);
+                        //BaseMng<T>.Instance.Update (o, x => x.nom = txtNom.Text);
                 }
 
                 public void Delete ()

@@ -30,7 +30,12 @@ namespace Bodget.CRUD
                 {
                         o = mdl;
                 }
-
+                public CRUDmode CRUDmode { get; set; }
+                public crudGrid (T mdl, CRUDmode CRUDmode)
+                {
+                        o = mdl;
+                        this.CRUDmode = CRUDmode;
+                }
                 public T Object
                 {
                         get
@@ -183,6 +188,11 @@ namespace Bodget.CRUD
                 }
 
                 public void Update ()
+                {
+                        throw new NotImplementedException ();
+                }
+
+                public void Delete ()
                 {
                         throw new NotImplementedException ();
                 }

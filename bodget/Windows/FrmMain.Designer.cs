@@ -43,14 +43,16 @@
                         this.tsmCategories = new System.Windows.Forms.ToolStripMenuItem();
                         this.tsmCategotyCRUD = new System.Windows.Forms.ToolStripMenuItem();
                         this.tsmCategoryRules = new System.Windows.Forms.ToolStripMenuItem();
+                        this.tsmAppliquerLesRegles = new System.Windows.Forms.ToolStripMenuItem();
                         this.tsmiCheques = new System.Windows.Forms.ToolStripMenuItem();
+                        this.tsmiPersonnes = new System.Windows.Forms.ToolStripMenuItem();
+                        this.tsmiRemboursements = new System.Windows.Forms.ToolStripMenuItem();
                         this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
                         this.tsmOptions = new System.Windows.Forms.ToolStripMenuItem();
                         this.tsmAffichages = new System.Windows.Forms.ToolStripMenuItem();
                         this.toolStripContainer2 = new System.Windows.Forms.ToolStripContainer();
                         this.ucCategoryContainer = new Bodget.UserCtrl.ucCategoryContainer();
                         this.pnlMenu = new System.Windows.Forms.Panel();
-                        this.tsmAppliquerLesRegles = new System.Windows.Forms.ToolStripMenuItem();
                         this.menuStrip1.SuspendLayout();
                         this.toolStripContainer2.ContentPanel.SuspendLayout();
                         this.toolStripContainer2.SuspendLayout();
@@ -133,7 +135,9 @@
             this.tsmCompte,
             this.tsmBeneficiare,
             this.tsmCategories,
-            this.tsmiCheques});
+            this.tsmiCheques,
+            this.tsmiPersonnes,
+            this.tsmiRemboursements});
                         this.tsmData.Name = "tsmData";
                         this.tsmData.Size = new System.Drawing.Size(65, 21);
                         this.tsmData.Text = "Données";
@@ -141,21 +145,21 @@
                         // tsmBanque
                         // 
                         this.tsmBanque.Name = "tsmBanque";
-                        this.tsmBanque.Size = new System.Drawing.Size(152, 22);
+                        this.tsmBanque.Size = new System.Drawing.Size(167, 22);
                         this.tsmBanque.Text = "Banque";
                         this.tsmBanque.Click += new System.EventHandler(this.tsmBanque_Click);
                         // 
                         // tsmCompte
                         // 
                         this.tsmCompte.Name = "tsmCompte";
-                        this.tsmCompte.Size = new System.Drawing.Size(152, 22);
+                        this.tsmCompte.Size = new System.Drawing.Size(167, 22);
                         this.tsmCompte.Text = "Compte";
                         this.tsmCompte.Click += new System.EventHandler(this.tsmCompte_Click);
                         // 
                         // tsmBeneficiare
                         // 
                         this.tsmBeneficiare.Name = "tsmBeneficiare";
-                        this.tsmBeneficiare.Size = new System.Drawing.Size(152, 22);
+                        this.tsmBeneficiare.Size = new System.Drawing.Size(167, 22);
                         this.tsmBeneficiare.Text = "Beneficiare";
                         this.tsmBeneficiare.Click += new System.EventHandler(this.tsmBeneficiare_Click);
                         // 
@@ -166,7 +170,7 @@
             this.tsmCategoryRules,
             this.tsmAppliquerLesRegles});
                         this.tsmCategories.Name = "tsmCategories";
-                        this.tsmCategories.Size = new System.Drawing.Size(152, 22);
+                        this.tsmCategories.Size = new System.Drawing.Size(167, 22);
                         this.tsmCategories.Text = "Categories";
                         // 
                         // tsmCategotyCRUD
@@ -183,12 +187,33 @@
                         this.tsmCategoryRules.Text = "Règles";
                         this.tsmCategoryRules.Click += new System.EventHandler(this.tsmCategoryRules_Click);
                         // 
+                        // tsmAppliquerLesRegles
+                        // 
+                        this.tsmAppliquerLesRegles.Name = "tsmAppliquerLesRegles";
+                        this.tsmAppliquerLesRegles.Size = new System.Drawing.Size(177, 22);
+                        this.tsmAppliquerLesRegles.Text = "Appliquer les règles";
+                        this.tsmAppliquerLesRegles.Click += new System.EventHandler(this.tsmAppliquerLesRegles_Click);
+                        // 
                         // tsmiCheques
                         // 
                         this.tsmiCheques.Name = "tsmiCheques";
-                        this.tsmiCheques.Size = new System.Drawing.Size(152, 22);
+                        this.tsmiCheques.Size = new System.Drawing.Size(167, 22);
                         this.tsmiCheques.Text = "Chéques";
                         this.tsmiCheques.Click += new System.EventHandler(this.tsmiCheques_Click);
+                        // 
+                        // tsmiPersonnes
+                        // 
+                        this.tsmiPersonnes.Name = "tsmiPersonnes";
+                        this.tsmiPersonnes.Size = new System.Drawing.Size(167, 22);
+                        this.tsmiPersonnes.Text = "Personnes";
+                        this.tsmiPersonnes.Click += new System.EventHandler(this.tsmiPersonnes_Click);
+                        // 
+                        // tsmiRemboursements
+                        // 
+                        this.tsmiRemboursements.Name = "tsmiRemboursements";
+                        this.tsmiRemboursements.Size = new System.Drawing.Size(167, 22);
+                        this.tsmiRemboursements.Text = "Remboursements";
+                        this.tsmiRemboursements.Click += new System.EventHandler(this.tsmiRemboursements_Click);
                         // 
                         // toolStripMenuItem1
                         // 
@@ -249,13 +274,6 @@
                         this.pnlMenu.Size = new System.Drawing.Size(784, 25);
                         this.pnlMenu.TabIndex = 4;
                         // 
-                        // tsmAppliquerLesRegles
-                        // 
-                        this.tsmAppliquerLesRegles.Name = "tsmAppliquerLesRegles";
-                        this.tsmAppliquerLesRegles.Size = new System.Drawing.Size(177, 22);
-                        this.tsmAppliquerLesRegles.Text = "Appliquer les règles";
-                        this.tsmAppliquerLesRegles.Click += new System.EventHandler(this.tsmAppliquerLesRegles_Click);
-                        // 
                         // FrmMain
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -301,6 +319,8 @@
                 private System.Windows.Forms.ToolStripMenuItem tsmImportDataFiles;
                 private System.Windows.Forms.ToolStripMenuItem tsmiCheques;
                 private System.Windows.Forms.ToolStripMenuItem tsmAppliquerLesRegles;
+                private System.Windows.Forms.ToolStripMenuItem tsmiPersonnes;
+                private System.Windows.Forms.ToolStripMenuItem tsmiRemboursements;
         }
 }
 

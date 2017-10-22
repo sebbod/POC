@@ -484,6 +484,15 @@ namespace Libod {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to doit.
+        /// </summary>
+        public static string doit {
+            get {
+                return ResourceManager.GetString("doit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to donne.
         /// </summary>
         public static string donne {
@@ -817,6 +826,15 @@ namespace Libod {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to montant.
+        /// </summary>
+        public static string montant {
+            get {
+                return ResourceManager.GetString("montant", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Mois.
         /// </summary>
         public static string Month {
@@ -858,6 +876,15 @@ namespace Libod {
         public static string nombre {
             get {
                 return ResourceManager.GetString("nombre", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to nombre décimal.
+        /// </summary>
+        public static string nombreDecimal {
+            get {
+                return ResourceManager.GetString("nombreDecimal", resourceCulture);
             }
         }
         
@@ -912,6 +939,15 @@ namespace Libod {
         public static string parentheseOuvrante {
             get {
                 return ResourceManager.GetString("parentheseOuvrante", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Personne.
+        /// </summary>
+        public static string Personne {
+            get {
+                return ResourceManager.GetString("Personne", resourceCulture);
             }
         }
         
@@ -975,6 +1011,24 @@ namespace Libod {
         public static string recherchee {
             get {
                 return ResourceManager.GetString("recherchee", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remboursement.
+        /// </summary>
+        public static string Remboursement {
+            get {
+                return ResourceManager.GetString("Remboursement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to rembourser.
+        /// </summary>
+        public static string rembourser {
+            get {
+                return ResourceManager.GetString("rembourser", resourceCulture);
             }
         }
         

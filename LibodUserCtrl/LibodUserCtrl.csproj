@@ -54,6 +54,9 @@
     <Compile Include="Extension\SourceGridEx\DataGridEx.cs" />
     <Compile Include="Extension\SourceGridEx\Grid\GridEx_KeyEvent.cs" />
     <Compile Include="Extension\SourceGridEx\Grid\GridEx.cs" />
+    <Compile Include="Extension\WinMenu\ToolStripMenuItemWith2Values.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Extension\WinMenu\ToolStripMenuItemWithValue4sourceGrid.cs">
       <SubType>Component</SubType>
     </Compile>

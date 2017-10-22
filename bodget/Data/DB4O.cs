@@ -67,6 +67,13 @@ namespace Bodget.Data
                         o.GetType ().GetProperty (PropertyName).SetValue (o, value);
                 }
 
+                /// <summary>
+                /// Copy d'un type vers un autre, copy les propriétées communes
+                /// </summary>
+                /// <typeparam name="T1"></typeparam>
+                /// <typeparam name="T2"></typeparam>
+                /// <param name="db1"></param>
+                /// <param name="db2"></param>
                 public static void Migration<T1, T2> (string db1, string db2)
                         where T2: new ()
                 {
@@ -106,9 +113,53 @@ namespace Bodget.Data
                         {
                                 using (IObjectContainer c2 = Db4oFactory.OpenFile (db2))
                                 {
+                                        // debug var t = c1.Query (typeof(Bodget.Model.Beneficiare));
                                         foreach (var o1 in c1.Query (type))
                                         {
                                                 c2.Store (o1);
+                                        }
+                                }
+                        }
+                }
+
+                /// <summary>
+                /// Copy de db1 de type1 vers db2 de type2
+                /// </summary>
+                /// <param name="type1"></param>
+                /// <param name="db1"></param>
+                /// <param name="type2"></param>
+                /// <param name="db2"></param>
+                public static void Migration (Type type1, string db1, Type type2, string db2)
+                {
+                        System.IO.FileInfo fi1 = new System.IO.FileInfo (db1);
+                        System.IO.FileInfo fi2 = new System.IO.FileInfo (db2);
+                        if (fi1.FullName == fi2.FullName)
+                        {
+                                throw new Exception ("File already exist here : " + Environment.NewLine + db2);
+                        }
+                        using (IObjectContainer c1 = Db4oFactory.OpenFile (db1))
+                        {
+                                using (IObjectContainer c2 = Db4oFactory.OpenFile (db2))
+                                {
+                                        if (type2 == type1)
+                                        {
+                                                foreach (var o1 in c1.Query (type1))
+                                                {
+                                                        c2.Store (o1);
+                                                }
+                                        }
+                                        else
+                                        {
+                                                foreach (var o1 in c1.Query (type1))
+                                                {
+                                                        var o2 = Activator.CreateInstance (type2, true);
+                                                        var commonProp = o1.GetPropertyTypeName ().Intersect (o2.GetPropertyTypeName ());
+                                                        foreach (var pi in commonProp)
+                                                        {
+                                                                SetValue (o2, pi.Name, GetValue (o1, pi.Name));
+                                                        }
+                                                        c2.Store (o2);
+                                                }
                                         }
                                 }
                         }

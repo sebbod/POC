@@ -18,6 +18,12 @@ namespace Bodget.CRUD.Properties
                 {
                         o = mdl;
                 }
+                public CRUDmode CRUDmode { get; set; }
+                public crudColor (T mdl, CRUDmode CRUDmode)
+                {
+                        o = mdl;
+                        this.CRUDmode = CRUDmode;
+                }
                 public T Object
                 {
                         get
@@ -78,6 +84,11 @@ namespace Bodget.CRUD.Properties
                 public void Update ()
                 {
                         BaseMng<T>.Instance.Update (o, x => x.color = txtColor.BackColor);
+                }
+
+                public void Delete ()
+                {
+                        throw new NotImplementedException ();
                 }
         }
 }

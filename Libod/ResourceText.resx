@@ -326,6 +326,9 @@
         <data name="largeur" xml:space="preserve">
     <value>largeur</value>
   </data>
+        <data name="montant" xml:space="preserve">
+    <value>montant</value>
+  </data> 
         <data name="YouMustEnter" xml:space="preserve">
     <value>vous devez saisir {0}</value>
     <comment>0 = la colonne, la catégorie, le truc, etc...</comment>
@@ -462,6 +465,9 @@
         <data name="nombre" xml:space="preserve">
     <value>nombre</value>
   </data>
+        <data name="nombreDecimal" xml:space="preserve">
+    <value>nombre décimal</value>
+  </data>
         <data name="CrochetFermant" xml:space="preserve">
     <value>]</value>
   </data>
@@ -495,6 +501,9 @@
         <data name="Beneficiare" xml:space="preserve">
     <value>Beneficiare</value>
   </data>
+        <data name="Personne" xml:space="preserve">
+    <value>Personne</value>
+  </data>
         <data name="banquaire" xml:space="preserve">
     <value>banquaire</value>
   </data>
@@ -517,5 +526,14 @@
   </data>
         <data name="donne" xml:space="preserve">
     <value>donne</value>
+  </data>
+        <data name="doit" xml:space="preserve">
+    <value>doit</value>
+  </data>
+        <data name="rembourser" xml:space="preserve">
+    <value>rembourser</value>
+  </data>
+        <data name="Remboursement" xml:space="preserve">
+    <value>Remboursement</value>
   </data>
 </root>

@@ -247,6 +247,22 @@ namespace Bodget.Data
                         Delete (item.id1, item.id2);
                 }
 
+                public void DeleteAllLineWithId1 (long id1)
+                {
+                        foreach (var oHr in All.Where (oHr => oHr.id1 == id1))
+                        {
+                                Delete (oHr.id1, oHr.id2);
+                        }
+                }
+
+                public void DeleteAllLineWithId2 (long id2)
+                {
+                        foreach (var oHr in All.Where (oHr => oHr.id2 == id2))
+                        {
+                                Delete (oHr.id1, oHr.id2);
+                        }
+                }
+
                 public void Delete (long id1, long id2)
                 {
                         using (IObjectContainer container = Db4oFactory.OpenFile (DB_PATH))

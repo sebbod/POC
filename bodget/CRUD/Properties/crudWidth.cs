@@ -17,7 +17,12 @@ namespace Bodget.CRUD.Properties
                 {
                         o = mdl;
                 }
-
+                public CRUDmode CRUDmode { get; set; }
+                public crudWidth (T mdl, CRUDmode CRUDmode)
+                {
+                        o = mdl;
+                        this.CRUDmode = CRUDmode;
+                }
                 public T Object
                 {
                         get
@@ -41,7 +46,7 @@ namespace Bodget.CRUD.Properties
                         lblWidth.Height = Constantes.CTRL_HEIGHT;
                         pnl.Controls.Add (lblWidth);
 
-                        txtWidth.Text = o.width.ToString();
+                        txtWidth.Text = o.width.ToString ();
                         txtWidth.Left = lblWidth.Width + Constantes.CTRL_MARGE;
                         txtWidth.Width = parentPanel.Width - txtWidth.Left - Constantes.CTRL_MARGE;
                         txtWidth.TextAlign = HorizontalAlignment.Left;
@@ -67,7 +72,7 @@ namespace Bodget.CRUD.Properties
                                 return ex;
                         }
 
-                        if (txtWidth.Text.IsInt32 ())
+                        if (!txtWidth.Text.IsInt32 ())
                         {
                                 var ex = new Exception (String.Format (RESX.YouMustEnter, String.Format ("{0} {1}", RESX.un, RESX.nombre)).ToSentence ());
                                 txtWidth.Focus ();
@@ -79,13 +84,18 @@ namespace Bodget.CRUD.Properties
 
                 public void Insert ()
                 {
-                        o.width = txtWidth.Text.ToInt32();
+                        o.width = txtWidth.Text.ToInt32 ();
                         BaseMng<T>.Instance.Insert (o);
                 }
 
                 public void Update ()
                 {
-                        BaseMng<T>.Instance.Update (o, x => x.width = txtWidth.Text.ToInt32());
+                        BaseMng<T>.Instance.Update (o, x => x.width = txtWidth.Text.ToInt32 ());
+                }
+
+                public void Delete ()
+                {
+                        throw new NotImplementedException ();
                 }
         }
 }

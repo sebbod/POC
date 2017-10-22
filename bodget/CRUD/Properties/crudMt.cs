@@ -8,21 +8,27 @@ using RESX = Libod.ResourceText;
 
 namespace Bodget.CRUD.Properties
 {
-        public class crudNom<T>: IpropertyCRUD<T>
-                where T: IBase, INom
+        /// <summary>
+        /// Montant
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        public class crudMontant<T>: IpropertyCRUD<T>
+                where T: IBase, IMontant
         {
                 public T o { get; set; }
 
-                public crudNom (T mdl)
+                public crudMontant (T mdl)
                 {
                         o = mdl;
                 }
+
                 public CRUDmode CRUDmode { get; set; }
-                public crudNom (T mdl, CRUDmode CRUDmode)
+                public crudMontant (T mdl, CRUDmode CRUDmode)
                 {
                         o = mdl;
                         this.CRUDmode = CRUDmode;
                 }
+
                 public T Object
                 {
                         get
@@ -31,8 +37,8 @@ namespace Bodget.CRUD.Properties
                                 return o;
                         }
                 }
-                public Label    /**/ lblNom = new Label ();
-                public TextBox  /**/ txtNom = new TextBox ();
+                public Label    /**/ lblMontant = new Label ();
+                public TextBox  /**/ txtMontant = new TextBox ();
                 public Panel    /**/ pnl = new Panel ();
 
                 public Panel CreateObject (Panel parentPanel)
@@ -40,17 +46,23 @@ namespace Bodget.CRUD.Properties
                         pnl.Height = Constantes.LINE_HEIGHT;
                         pnl.Dock = DockStyle.Bottom;
 
-                        lblNom.Text = RESX.nom.ToLabel ();
-                        lblNom.Left = Constantes.CTRL_MARGE;
-                        lblNom.Width = 74;
-                        lblNom.Height = Constantes.CTRL_HEIGHT;
-                        pnl.Controls.Add (lblNom);
+                        lblMontant.Text = RESX.montant.ToLabel ();
+                        lblMontant.Left = Constantes.CTRL_MARGE;
+                        lblMontant.Width = 74;
+                        lblMontant.Height = Constantes.CTRL_HEIGHT;
+                        pnl.Controls.Add (lblMontant);
 
-                        txtNom.Text = o.nom;
-                        txtNom.Left = lblNom.Width + Constantes.CTRL_MARGE;
-                        txtNom.Width = parentPanel.Width - txtNom.Left - Constantes.CTRL_MARGE;
-                        txtNom.Height = Constantes.CTRL_HEIGHT;
-                        pnl.Controls.Add (txtNom);
+                        txtMontant.Text = o.mt.ToString();
+                        txtMontant.Left = lblMontant.Width + Constantes.CTRL_MARGE;
+                        txtMontant.Width = parentPanel.Width - txtMontant.Left - Constantes.CTRL_MARGE;
+                        txtMontant.Height = Constantes.CTRL_HEIGHT;
+                        pnl.Controls.Add (txtMontant);
+                        if(txtMontant.Text.StartsWith("-"))
+                        {
+                                txtMontant.SelectionStart = 1;
+                                txtMontant.SelectionLength = txtMontant.Text.Length - 1;
+                        }
+                        txtMontant.Focus ();
 
                         try
                         {
@@ -69,12 +81,19 @@ namespace Bodget.CRUD.Properties
                 /// <returns>Exception or null</returns>
                 public Exception Validation ()
                 {
-                        txtNom.Text = txtNom.Text.Trim ();
+                        txtMontant.Text = txtMontant.Text.Trim ();
 
-                        if (txtNom.Text.Length == 0)
+                        if (txtMontant.Text.Length == 0)
                         {
                                 var ex = new Exception (String.Format (RESX.YouMustEnter, String.Format ("{0} {1}", RESX.un, RESX.nom)).ToSentence ());
-                                txtNom.Focus ();
+                                txtMontant.Focus ();
+                                return ex;
+                        }
+
+                        if (!txtMontant.Text.IsDecimal ())
+                        {
+                                var ex = new Exception (String.Format (RESX.YouMustEnter, String.Format ("{0} {1}", RESX.un, RESX.nombreDecimal)).ToSentence ());
+                                txtMontant.Focus ();
                                 return ex;
                         }
 
@@ -83,13 +102,13 @@ namespace Bodget.CRUD.Properties
 
                 public void Insert ()
                 {
-                        o.nom = txtNom.Text;
+                        o.mt = txtMontant.Text.ToDecimal();
                         BaseMng<T>.Instance.Insert (o);
                 }
 
                 public void Update ()
                 {
-                        BaseMng<T>.Instance.Update (o, x => x.nom = txtNom.Text);
+                        BaseMng<T>.Instance.Update (o, x => x.mt = txtMontant.Text.ToDecimal());
                 }
 
                 public void Delete ()

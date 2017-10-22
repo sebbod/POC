@@ -24,6 +24,9 @@ namespace Bodget.Windows
         {
                 private ucSelectListInCombo<dbObjectInfo> ucLst;
                 private ucSelectOneInCombo<dbObjectInfo> ucOne;
+                private ucCombo ucCmbChoiceOutputType;
+
+                private Type _choiceOutputType;
 
                 public ImExport.ActionType actionType { get; set; }
 
@@ -41,7 +44,7 @@ namespace Bodget.Windows
                                         ucOne = new ucSelectOneInCombo<dbObjectInfo> (ImExport.GetTypeExportable (), null);
                                         ucOne.Text = string.Format (RESX._duFichierA_, RESX.nom, RESX.import).ToTitle ();
                                         pnl.Controls.Add (ucOne);
-
+                                        Text = RESX.import;
                                         btnAction.Text = RESX.import;
                                         btnAction.Click += btnAction_Click;
 
@@ -52,17 +55,35 @@ namespace Bodget.Windows
 
                                         ucLst.Text = string.Format (RESX.ListDes_a_, RESX.file + RESX.s, RESX.export);
                                         pnl.Controls.Add (ucLst);
-
+                                        Text = RESX.export;
                                         btnAction.Text = RESX.export;
                                         btnAction.Click += btnAction_Click;
+
+                                        List<ctrlItem> comboValues = new List<ctrlItem>();
+                                        foreach (var o in ImExport.GetTypeExportable ())
+                                        {
+                                                comboValues.Add (new ctrlItem { Text = o.Text, Value = o.Value });
+                                        }
+                                        ucCmbChoiceOutputType = new ucCombo ("output type :", 100, comboValues);
+                                        Controls.Add (ucCmbChoiceOutputType);
+                                        ucCmbChoiceOutputType.Top = btnAction.Top;
+                                        ucCmbChoiceOutputType.Left = pnl.Left;
+                                        ucCmbChoiceOutputType.Visible = true;
+                                        ucCmbChoiceOutputType.ValueChange += ucCmbChoiceOutputType_ValueChange;
                                         break;
                         }
+                }
+
+                void ucCmbChoiceOutputType_ValueChange (object source, ctrlItem e)
+                {
+                        _choiceOutputType = (e.Value as dbObjectInfo).type;
                 }
 
                 private void btnAction_Click (object sender, EventArgs e)
                 {
                         using (var ffd = new FileFolderDialog ())
                         {
+                                //ffd.
                                 if (DialogResult.OK == ffd.ShowDialog (this))
                                 {
                                         try
@@ -86,8 +107,16 @@ namespace Bodget.Windows
                                                                         ImExport.FromFile (ffd.SelectedPath, i.type);
                                                                         break;
                                                                 case ImExport.ActionType.Export:
-                                                                        string filePath = Path.Combine (ffd.SelectedPath, i.nom);
-                                                                        ImExport.ToFile (filePath, i.type);
+                                                                        if (_choiceOutputType == null)
+                                                                        {
+                                                                                string filePath = Path.Combine (ffd.SelectedPath, i.nom);
+                                                                                ImExport.ToFile (filePath, i.type);
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                                string filePath = Path.Combine (ffd.SelectedPath, _choiceOutputType.ToString());
+                                                                                ImExport.ToFile (filePath, i.type, _choiceOutputType);
+                                                                        }
                                                                         break;
                                                         }
                                                 }

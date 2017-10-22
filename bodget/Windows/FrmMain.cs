@@ -24,7 +24,6 @@ namespace Bodget.Windows
 
                         CreateMenu ();
 
-
                         // /*
                         // * supprime les doublons de nom dans Category
                         // */
@@ -196,6 +195,22 @@ namespace Bodget.Windows
                 {
                         var frm = new FrmBaseGrid<Cheque> ();
                         frm.Show ();
+                }
+
+                private void tsmiPersonnes_Click (object sender, EventArgs e)
+                {
+                        using (var frm = new FrmBaseCRUD<Personne> (null))
+                        {
+                                frm.ShowDialog ();
+                        }
+                }
+
+                private void tsmiRemboursements_Click (object sender, EventArgs e)
+                {
+                        using (var frm = new FrmBaseCRUD<Remboursement> (null))
+                        {
+                                frm.ShowDialog ();
+                        }
                 }
 
 

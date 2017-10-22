@@ -70,6 +70,13 @@ namespace Bodget.Model
                         _propertiesCRUD.Update ();
                 }
 
+                public void Delete ()
+                {
+                        var o = _propertiesCRUD.First ();
+                        var oD = DB4O.CreateInstanceOfBaseMng (o.Object.GetType ());
+                        oD.Delete (o.Object.id);
+                }
+
                 public string frmTitle
                 {
                         get

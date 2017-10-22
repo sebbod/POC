@@ -22,7 +22,12 @@ namespace Bodget.CRUD.Properties
                 {
                         o = mdl;
                 }
-
+                public CRUDmode CRUDmode { get; set; }
+                public crudSelectListInCombo (T1 mdl, CRUDmode CRUDmode)
+                {
+                        o = mdl;
+                        this.CRUDmode = CRUDmode;
+                }
                 public T1 Object
                 {
                         get
@@ -87,6 +92,7 @@ namespace Bodget.CRUD.Properties
                         var deletedItem = allExistingHasObject.Except (SelectedHasListObject ());
                         foreach (Has item in deletedItem)
                         {
+                                item.DeleteLstId2InObj1<T1> (item);
                                 BaseHasMng<Has>.Instance.Delete (item);
                         }
                         foreach (Has item in SelectedHasListObject ())
@@ -100,7 +106,7 @@ namespace Bodget.CRUD.Properties
                                 {
                                         BaseHasMng<Has>.Instance.Update (item, x => x.id2 = item.id2);
                                 }
-
+                                item.UpdateLstId2InObj1<T1> (item);
                         }
                 }
 

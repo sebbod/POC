@@ -20,5 +20,6 @@ namespace Libod.Model
                 void    /**/ CreateObject               /**/(Panel parentPanel);
                 void    /**/ Insert ();
                 void    /**/ Update ();
+                void    /**/ Delete ();
         }
 }

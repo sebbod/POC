@@ -15,4 +15,6 @@ namespace Bodget.CRUD
                 /// </summary>
                 public const string OPERATION_TYPE_CHEQUE = "CHEQUE EMIS";
         }
+
+
 }

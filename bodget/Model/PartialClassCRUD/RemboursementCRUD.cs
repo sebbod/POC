@@ -1,36 +1,53 @@
-﻿using Bodget.CRUD.Properties;
-using Bodget.Data;
-using Db4objects.Db4o.Types;
-using Libod;
-using Libod.Model;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using Bodget.CRUD.Properties;
+using Bodget.Data;
+using Db4objects.Db4o.Types;
+using Libod;
+using Libod.Ctrl;
+using Libod.Model;
 using RESX = Libod.ResourceText;
 
 namespace Bodget.Model
 {
-        partial class Cheque: IBaseCRUD<Cheque>, ICode, INom
+        partial class Remboursement: IBaseCRUD<Remboursement>, IMontant, IPersonne, IOperationDeRemboursement
         {
-                public ICRUD<Cheque> CRUD ()
+                public ICRUD<Remboursement> CRUD ()
                 {
-                        return _Cheque4CRUD ?? (_Cheque4CRUD = new Cheque4CRUD (this));
+                        return _Remboursement4CRUD ?? (_Remboursement4CRUD = new Remboursement4CRUD (this));
                 }
+
+                //public IEnumerable<ctrlItem<ICtrlItem>> ComboItems ()
+                //{
+                //        foreach (Remboursement i in BaseMng<Remboursement>.Instance.All)
+                //        {
+                //                yield return new ctrlItem<ICtrlItem> { id = i.id, Text = i.ToString(), Value = i };
+                //        }
+                //}
+
+                //public ICollection<ctrlItem<ICtrlItem>> ComboItems4Cell ()
+                //{
+                //        return ComboItems ().ToList ();
+                //}
+
         }
 
-        public class Cheque4CRUD: ICRUD<Cheque>, ITransientClass
+        public class Remboursement4CRUD: ICRUD<Remboursement>, ITransientClass
         {
-                private readonly List<IpropertyCRUD<Cheque>> _propertiesCRUD = new List<IpropertyCRUD<Cheque>> ();
+                private readonly List<IpropertyCRUD<Remboursement>> _propertiesCRUD = new List<IpropertyCRUD<Remboursement>> ();
 
-                public Cheque4CRUD (Cheque o)
+                public Remboursement4CRUD (Remboursement o)
                 {
-                        _propertiesCRUD.Add (new crudCode<Cheque> (o));
-                        _propertiesCRUD.Add (new crudNom<Cheque> (o));
-                        //_propertiesCRUD.Add (new crudGrid<Cheque> (o));
+                        _propertiesCRUD.Add (new crudMontant<Remboursement> (o));
+                        _propertiesCRUD.Add (new crudPersonne<Remboursement> (o, CRUDmode.read));
+                        _propertiesCRUD.Add (new crudOperation<Remboursement> (o, CRUDmode.read));
+                        
                 }
-                public List<IpropertyCRUD<Cheque>> propertiesCRUD { get { return _propertiesCRUD; } }
+                public List<IpropertyCRUD<Remboursement>> propertiesCRUD { get { return _propertiesCRUD; } }
 
-                public Cheque Object
+                public Remboursement Object
                 {
                         get
                         {
@@ -60,6 +77,10 @@ namespace Bodget.Model
                 public void Delete ()
                 {
                         var o = _propertiesCRUD.First ();
+
+                        // supprimer d'abord tous les liens dans OperationHasRemboursement
+                        BaseHasMng<OperationHasRemboursement>.Instance.DeleteAllLineWithId2 (o.Object.id);
+
                         var oD = DB4O.CreateInstanceOfBaseMng (o.Object.GetType ());
                         oD.Delete (o.Object.id);
                 }
@@ -84,7 +105,7 @@ namespace Bodget.Model
                 {
                         get
                         {
-                                return RESX.cheque;
+                                return RESX.Remboursement;
                         }
                 }
 
@@ -96,5 +117,4 @@ namespace Bodget.Model
                         }
                 }
         }
-
 }

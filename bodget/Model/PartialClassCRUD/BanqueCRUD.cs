@@ -1,4 +1,5 @@
 ﻿using Bodget.CRUD.Properties;
+using Bodget.Data;
 using Db4objects.Db4o.Types;
 using Libod;
 using Libod.Model;
@@ -52,6 +53,13 @@ namespace Bodget.Model
                 public void Update ()
                 {
                         _propertiesCRUD.Update ();
+                }
+
+                public void Delete ()
+                {
+                        var o = _propertiesCRUD.First ();
+                        var oD = DB4O.CreateInstanceOfBaseMng (o.Object.GetType ());
+                        oD.Delete (o.Object.id);
                 }
 
                 public string frmTitle

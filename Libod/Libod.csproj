@@ -82,6 +82,9 @@
     <Compile Include="DataType\DateSelectorInfo.cs" />
     <Compile Include="DataType\MultiKeyDictionary.cs" />
     <Compile Include="Enumerations\CultureName.cs" />
+    <Compile Include="Model\Interface4CRUD\IOperation.cs" />
+    <Compile Include="Model\Interface4CRUD\IPersonne.cs" />
+    <Compile Include="Model\Interface4CRUD\IMontant.cs" />
     <Compile Include="Model\Interface4CRUD\IVisible.cs" />
     <Compile Include="Model\Interface4CRUD\IWidth.cs" />
     <Compile Include="Model\Interface4CRUD\ICode.cs" />
@@ -95,6 +98,7 @@
     <Compile Include="Model\Interface\IBase.cs" />
     <Compile Include="Model\Interface\IBaseCRUD.cs" />
     <Compile Include="Model\Interface\IBaseHas.cs" />
+    <Compile Include="ProperpertyCRUD\CRUDmode.cs" />
     <Compile Include="ProperpertyCRUD\Interface\IpropertyCRUD.cs" />
     <Compile Include="ProperpertyCRUD\IpropertyCRUDex.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

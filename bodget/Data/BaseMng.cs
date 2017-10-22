@@ -193,7 +193,12 @@ namespace Bodget.Data
                         if (item.id == 0)
                         {
                                 // pas d'id
-                                item.id = _all.Count + 1;
+                                long nextId = 1;
+                                if(_all.Count > 0)
+                                {
+                                        nextId = _all.OrderBy (o => o.id).First().id;
+                                }
+                                item.id = nextId + 1;
                         }
                         else
                         {
@@ -201,6 +206,7 @@ namespace Bodget.Data
                                 if (_all.Any (x => x.id == item.id))
                                 {
                                         throw new ArgumentException ("PK constraint : id [" + item.id + "] already exist");
+                                        //return; // il ne faut pas insérer cette ligne (operation) elle est déjà dans la base
                                 }
                         }
 

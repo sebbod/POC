@@ -74,7 +74,7 @@ namespace Bodget.Data
                         {
                                 sw.WriteLine (ex.Message);
                         }
-                        
+
                         // enregistrement en base transactionné (all or nothing)
                         try
                         {
@@ -110,7 +110,12 @@ namespace Bodget.Data
                         Action (ActionType.Export, filePath, type);
                 }
 
-                private static void Action (ActionType actionType, string filePath, Type type)
+                public static void ToFile (string filePath, Type type, Type outputType)
+                {
+                        Action (ActionType.Export, filePath, type, outputType);
+                }
+
+                private static void Action (ActionType actionType, string filePath, Type type, Type outputType = null)
                 {
                         string DB_PATH = null;
 
@@ -131,7 +136,14 @@ namespace Bodget.Data
                                                 DB4O.Migration (type, filePath, DB_PATH);
                                                 break;
                                         case ActionType.Export:
-                                                DB4O.Migration (type, DB_PATH, filePath);
+                                                if (outputType == null)
+                                                {
+                                                        DB4O.Migration (type, DB_PATH, filePath);
+                                                }
+                                                else
+                                                {
+                                                        DB4O.Migration (type, DB_PATH, outputType, filePath);
+                                                }
                                                 break;
                                 }
                         }
